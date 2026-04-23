@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sai Tummala | Senior DevOps & Cloud Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080c18;--bg2:#0c1220;--white:#111827;
+  --blue:#1a6fff;--blue2:#0050e6;--blue3:#003db5;
+  --cyan:#00b8d4;--cyan2:#00e5ff;--cyan-lt:#e0f9ff;
+  --green:#00c896;--green-lt:#e0fff6;
+  --orange:#ff6b2b;--orange-lt:#fff0eb;
+  --violet:#7c3aed;--violet-lt:#f3eeff;
+  --ink:#e2e8f8;--ink2:#b8c4e0;--ink3:#7a8ab5;--ink4:#4a5580;
+  --border:rgba(99,136,255,.18);--border2:rgba(99,136,255,.1);
+  --sdw:0 4px 24px rgba(26,111,255,.22);
+  --sdw2:0 8px 40px rgba(26,111,255,.38);
+  --r:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;line-height:1.6}
+
+/* ─── REAL-TIME DEVOPS ARCHITECTURE BACKGROUND ─── */
+.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+
+/* Subtle dot-grid overlay */
+.circuit{position:fixed;inset:0;z-index:0;opacity:.03;
+  background-image:radial-gradient(circle,rgba(26,111,255,.9) 1px,transparent 1px);
+  background-size:40px 40px}
+
+/* Gradient depth orbs */
+.mesh{position:absolute;border-radius:50%;filter:blur(90px);animation:mesh-drift 22s ease-in-out infinite alternate;pointer-events:none}
+.m1{width:600px;height:600px;background:radial-gradient(circle,rgba(26,111,255,.05),transparent 65%);top:-160px;left:5%;animation-duration:24s}
+.m2{width:500px;height:500px;background:radial-gradient(circle,rgba(0,184,212,.04),transparent 65%);top:35%;right:0%;animation-duration:20s;animation-delay:-9s}
+.m3{width:420px;height:420px;background:radial-gradient(circle,rgba(0,200,150,.03),transparent 65%);bottom:-80px;left:30%;animation-duration:28s;animation-delay:-14s}
+.m4{width:360px;height:360px;background:radial-gradient(circle,rgba(124,58,237,.03),transparent 65%);top:55%;left:6%;animation-duration:22s;animation-delay:-6s}
+@keyframes mesh-drift{0%{transform:translate(0,0) scale(1)}33%{transform:translate(28px,18px) scale(1.04)}66%{transform:translate(-18px,38px) scale(.97)}100%{transform:translate(10px,-22px) scale(1.02)}}
+
+/* ── ARCHITECTURE CANVAS ── */
+#arch-canvas{position:fixed;inset:0;z-index:0;opacity:.85}
+
+/* Floating status nodes */
+.node{position:absolute;display:flex;align-items:center;gap:.45rem;padding:.42rem .85rem;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:600;backdrop-filter:blur(10px);white-space:nowrap;animation:node-float 9s ease-in-out infinite alternate}
+.node-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;animation:node-ping 2s ease infinite}
+@keyframes node-ping{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.6)}}
+@keyframes node-float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(3px)}}
+/* AWS node — orange */
+.node-aws{background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.35);color:#ffb347}
+.node-aws .node-dot{background:#ff9900}
+/* Azure node — blue */
+.node-az{background:rgba(0,120,212,.1);border:1px solid rgba(0,120,212,.38);color:#5ea8ff}
+.node-az .node-dot{background:#0078d4}
+/* K8s node — k8s blue */
+.node-k8s{background:rgba(50,108,229,.1);border:1px solid rgba(50,108,229,.38);color:#7ba8ff}
+.node-k8s .node-dot{background:#326ce5}
+/* Green/success */
+.node-ok{background:rgba(0,200,150,.08);border:1px solid rgba(0,200,150,.32);color:#34d399}
+.node-ok .node-dot{background:#00c896}
+/* Violet/AI */
+.node-ai{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.38);color:#b08aff}
+.node-ai .node-dot{background:#7c3aed}
+/* GCP — GCP blue */
+.node-gcp{background:rgba(66,133,244,.08);border:1px solid rgba(66,133,244,.35);color:#7ab0ff}
+.node-gcp .node-dot{background:#4285f4}
+
+.n1{top:7%;right:4%;animation-duration:10s}
+.n2{top:20%;right:22%;animation-duration:13s;animation-delay:-4s}
+.n3{top:35%;right:3%;animation-duration:9s;animation-delay:-6s}
+.n4{top:52%;right:16%;animation-duration:11s;animation-delay:-2s}
+.n5{top:68%;right:5%;animation-duration:14s;animation-delay:-5s}
+.n6{bottom:6%;right:18%;animation-duration:10s;animation-delay:-1s}
+.n7{top:12%;left:1%;animation-duration:12s;animation-delay:-7s}
+.n8{top:58%;left:0%;animation-duration:9s;animation-delay:-3s}
+.n9{top:82%;left:3%;animation-duration:11s;animation-delay:-8s}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.85rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,12,24,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:.6rem}
+.logo-mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:18px;height:18px}
+.logo-text{font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:700;color:var(--ink2);letter-spacing:.04em}
+.logo-text b{color:var(--blue)}
+.navl{display:flex;gap:1.8rem;list-style:none}
+.navl a{color:var(--ink3);text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:color .2s}.navl a:hover{color:var(--blue)}
+.ncta{display:flex;align-items:center;gap:.5rem;padding:.42rem 1.1rem;background:var(--blue);color:#fff;border-radius:8px;font-size:.76rem;font-weight:700;text-decoration:none;transition:all .2s;box-shadow:0 3px 12px rgba(26,111,255,.35)}.ncta:hover{background:var(--blue2);transform:translateY(-1px);box-shadow:0 5px 18px rgba(26,111,255,.45)}
+
+/* ─── SHARED ─── */
+section{padding:6rem 3rem;position:relative;z-index:1}
+.wrap{max-width:1100px;margin:0 auto}
+.slbl{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--blue);text-transform:uppercase;letter-spacing:.22em;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.slbl::before{content:'';width:16px;height:2px;background:var(--blue);border-radius:1px}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,2.9rem);color:var(--ink);line-height:1.08;margin-bottom:.7rem}
+.stitle span{background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sline{width:40px;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:2px;margin-bottom:2.6rem}
+.card{background:rgba(15,25,50,.75);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sdw);backdrop-filter:blur(14px);transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:var(--sdw2);border-color:rgba(99,136,255,.35)}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bk{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.5)}}
+
+/* ─── HERO ─── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem}
+.hrow{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;max-width:1100px;margin:0 auto;width:100%}
+
+/* terminal badge */
+.term-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.32rem 1rem;background:rgba(10,20,40,.9);border:1.5px solid rgba(0,184,212,.4);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ink3);margin-bottom:1.3rem;animation:fu .6s ease both;box-shadow:0 2px 12px rgba(0,184,212,.15)}
+.term-badge .tb-dot{width:6px;height:6px;border-radius:50%;background:#ff5f57;box-shadow:10px 0 0 #febc2e,20px 0 0 #28c840}
+
+/* name */
+h1.nm{font-family:'Syne',sans-serif;font-size:clamp(3rem,6.5vw,5.8rem);line-height:.93;margin-bottom:.4rem;color:var(--ink);animation:fu .55s .1s ease both;letter-spacing:-.03em}
+h1.nm .nm-first{color:var(--ink)}
+h1.nm .nm-last{background:linear-gradient(135deg,var(--blue) 0%,#0a8fff 40%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 8px rgba(26,111,255,.3))}
+
+/* role pill */
+.role-pill{display:inline-flex;align-items:center;gap:.6rem;padding:.35rem 1rem;background:linear-gradient(135deg,rgba(26,111,255,.14),rgba(0,184,212,.14));border:1.5px solid rgba(26,111,255,.35);border-radius:100px;margin-bottom:1.2rem;animation:fu .55s .2s ease both}
+.role-text{font-size:.82rem;font-weight:600;color:var(--blue2)}
+.role-sep{width:1px;height:14px;background:rgba(26,111,255,.3)}
+.sre-badge{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--cyan);font-weight:700;background:rgba(0,184,212,.1);padding:.1rem .5rem;border-radius:4px}
+
+.hdesc{font-size:.93rem;color:var(--ink3);line-height:1.9;margin-bottom:1.9rem;animation:fu .55s .3s ease both;max-width:510px}
+.hdesc strong{color:var(--blue);font-weight:700}
+
+/* cloud pills */
+.crow{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.9rem;animation:fu .55s .35s ease both}
+.cp{display:flex;align-items:center;gap:5px;padding:.26rem .82rem .26rem .52rem;border-radius:8px;font-size:.76rem;font-weight:700;border:1.5px solid;cursor:default;transition:transform .18s,box-shadow .18s}.cp:hover{transform:translateY(-2px)}
+.cp svg{width:16px;height:16px;flex-shrink:0}
+.caws{color:#ff9900;background:rgba(255,153,0,.1);border-color:rgba(255,153,0,.45);font-weight:700}.caws:hover{box-shadow:0 4px 18px rgba(255,153,0,.35);border-color:#ff9900}
+.caz{color:#50a8ff;background:rgba(0,120,212,.1);border-color:rgba(0,120,212,.5);font-weight:700}.caz:hover{box-shadow:0 4px 18px rgba(0,120,212,.35);border-color:#0078d4}
+.cgcp{color:#4285f4;background:rgba(66,133,244,.1);border-color:rgba(66,133,244,.45);font-weight:700}.cgcp:hover{box-shadow:0 4px 18px rgba(66,133,244,.3)}
+.ck8s{color:#7ba8ff;background:rgba(50,108,229,.1);border-color:rgba(50,108,229,.45);font-weight:700}.ck8s:hover{box-shadow:0 4px 18px rgba(50,108,229,.3)}
+.ctf{color:#b07ffc;background:rgba(123,66,188,.1);border-color:rgba(123,66,188,.45);font-weight:700}.ctf:hover{box-shadow:0 4px 18px rgba(123,66,188,.3)}
+.cai{color:#c084fc;background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.45);font-weight:700}.cai:hover{box-shadow:0 4px 18px rgba(124,58,237,.3)}
+.cargo{color:#ef7b4d;background:rgba(239,123,77,.1);border-color:rgba(239,123,77,.45);font-weight:700}.cargo:hover{box-shadow:0 4px 18px rgba(239,123,77,.3)}
+.cdock{color:#2496ed;background:rgba(36,150,237,.1);border-color:rgba(36,150,237,.45);font-weight:700}.cdock:hover{box-shadow:0 4px 18px rgba(36,150,237,.3)}
+
+.hbtns{display:flex;gap:.8rem;flex-wrap:wrap;animation:fu .55s .42s ease both}
+.btn1{display:inline-flex;align-items:center;gap:.45rem;padding:.72rem 1.7rem;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border-radius:10px;font-weight:700;font-size:.87rem;text-decoration:none;transition:all .2s;box-shadow:0 4px 16px rgba(26,111,255,.35)}
+.btn1:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(26,111,255,.45)}
+.btn2{display:inline-flex;align-items:center;gap:.45rem;padding:.72rem 1.7rem;background:rgba(15,25,55,.85);border:1.5px solid rgba(99,136,255,.3);color:var(--ink2);border-radius:10px;font-weight:600;font-size:.87rem;text-decoration:none;transition:all .2s;backdrop-filter:blur(8px)}
+.btn2:hover{border-color:var(--blue);color:var(--blue)}
+
+/* hero right: pipeline card */
+.pipeline-card{background:rgba(8,14,30,.92);border:1px solid rgba(99,136,255,.2);border-radius:20px;padding:1.6rem;box-shadow:var(--sdw2);animation:fu .55s .5s ease both;position:relative;overflow:hidden;backdrop-filter:blur(12px)}
+.pipeline-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--green))}
+.pc-title{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.14em;margin-bottom:1rem;display:flex;align-items:center;gap:.4rem}
+.pc-title::before{content:'&#x25BA;';color:var(--green);font-size:.6rem}
+/* mini pipeline stages */
+.mini-pipe{display:flex;align-items:center;gap:.3rem;margin-bottom:1.2rem;overflow-x:auto;padding-bottom:.2rem}
+.mpstage{display:flex;flex-direction:column;align-items:center;gap:.2rem;flex-shrink:0}
+.mpbox{padding:.28rem .6rem;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;text-align:center;white-space:nowrap}
+.mp-git{background:#fff0e6;color:#b84000;border:1px solid rgba(239,123,77,.3)}
+.mp-build{background:#e6f0ff;color:#0050c8;border:1px solid rgba(0,80,200,.25)}
+.mp-test{background:#fff8e0;color:#8a5800;border:1px solid rgba(245,158,11,.3)}
+.mp-scan{background:#edfdf8;color:#065f46;border:1px solid rgba(0,200,150,.3)}
+.mp-push{background:#f3eeff;color:#5b21b6;border:1px solid rgba(124,58,237,.3)}
+.mp-dep{background:#e0f9ff;color:#005a7a;border:1px solid rgba(0,184,212,.3)}
+.mp-ok{background:#ecfdf5;color:#065f46;border:1px solid #6ee7b7}
+.mp-arrow{font-size:.65rem;color:var(--ink4);margin-top:-.5rem}
+.mpdot{width:6px;height:6px;border-radius:50%;animation:bk 1.5s ease infinite}
+/* stat grid */
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.2rem}
+.sbox{padding:.9rem 1rem;border-radius:12px;text-align:center;position:relative;overflow:hidden}
+.sx1{background:linear-gradient(135deg,rgba(26,111,255,.18),rgba(26,111,255,.1))}.sx2{background:linear-gradient(135deg,rgba(0,184,212,.18),rgba(0,184,212,.1))}.sx3{background:linear-gradient(135deg,rgba(0,200,150,.18),rgba(0,200,150,.1))}.sx4{background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(124,58,237,.1))}
+.snum{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;display:block;line-height:1;margin-bottom:.1rem}
+.sx1 .snum{color:var(--blue)}.sx2 .snum{color:var(--cyan)}.sx3 .snum{color:var(--green)}.sx4 .snum{color:var(--violet)}
+.slbx{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--ink3)}
+/* live metrics row */
+.metrics-row{display:flex;gap:.6rem}
+.metric{flex:1;background:rgba(26,111,255,.1);border:1px solid rgba(26,111,255,.25);border-radius:10px;padding:.6rem .8rem;text-align:center}
+.mval{font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:700;color:var(--blue);display:block}
+.mlbl{font-size:.6rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.08em}
+
+/* ─── ABOUT ─── */
+#about{background:linear-gradient(180deg,var(--bg),var(--bg2))}
+.ag{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start}
+.at p{color:var(--ink3);margin-bottom:.95rem;line-height:1.9;font-size:.93rem}
+.at strong{color:var(--blue);font-weight:700}
+.hics{display:flex;flex-direction:column;gap:.75rem}
+.hic{display:flex;align-items:center;gap:.85rem;padding:.9rem 1.1rem;transition:transform .18s,box-shadow .2s;cursor:default}
+.hic:hover{transform:translateX(5px);box-shadow:var(--sdw2)}
+.hic::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px;background:var(--blue);opacity:0;transition:opacity .2s}
+.hic:hover::before{opacity:1}
+.hii{width:40px;height:40px;flex-shrink:0;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.hit{font-weight:700;font-size:.86rem;color:var(--ink);margin-bottom:.06rem}
+.hid{font-size:.73rem;color:var(--ink3)}
+
+/* ─── SKILLS ─── */
+#skills{background:var(--bg)}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:1.2rem}
+.sb{padding:1.4rem;transition:transform .18s,box-shadow .2s}.sb:hover{transform:translateY(-4px);box-shadow:var(--sdw2)}
+.sbt{font-size:.65rem;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--ink4);margin-bottom:.8rem;padding-bottom:.55rem;border-bottom:1.5px solid var(--border2);display:flex;align-items:center;gap:.4rem}
+.sbt-bar{width:20px;height:2px;border-radius:1px;background:var(--blue)}
+.its{display:flex;flex-wrap:wrap;gap:.45rem}
+.it{display:flex;align-items:center;gap:5px;padding:.25rem .7rem .25rem .48rem;background:rgba(26,111,255,.08);border:1.5px solid rgba(26,111,255,.2);border-radius:8px;font-size:.75rem;color:var(--ink2);font-weight:600;transition:all .18s;cursor:default}
+.it:hover{border-color:var(--blue);color:var(--blue);background:rgba(26,111,255,.15);transform:translateY(-1px)}
+.it svg{width:14px;height:14px;flex-shrink:0}
+.certbar{display:flex;align-items:center;gap:.85rem;margin-top:1.4rem;padding:.9rem 1.35rem;background:linear-gradient(135deg,rgba(26,111,255,.12),rgba(0,184,212,.1));border:1.5px solid rgba(26,111,255,.32);border-radius:13px;box-shadow:0 2px 12px rgba(26,111,255,.08)}
+.certbar svg{width:28px;height:28px;flex-shrink:0}
+.cn{font-weight:700;font-size:.87rem;color:var(--blue2)}
+.cs{font-size:.71rem;color:var(--ink4)}
+
+/* ─── PROJECTS ─── */
+#projects{background:var(--bg2)}
+.pl{display:flex;flex-direction:column;gap:1.6rem}
+.pc2{padding:1.85rem;transition:transform .22s,box-shadow .22s;position:relative;overflow:hidden}
+.pc2::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;border-radius:4px 0 0 4px}
+.pc2:hover{transform:translateY(-4px);box-shadow:var(--sdw2)}
+.pf{} .pf::before{background:linear-gradient(180deg,var(--violet),#e84393)} .pf:hover{border-color:rgba(124,58,237,.35)}
+.ptf::before{background:linear-gradient(180deg,var(--blue),var(--cyan))} .ptf:hover{border-color:rgba(26,111,255,.35)}
+.pci::before{background:linear-gradient(180deg,var(--cyan),var(--green))} .pci:hover{border-color:rgba(0,184,212,.35)}
+.psc::before{background:linear-gradient(180deg,var(--green),#059669)} .psc:hover{border-color:rgba(0,200,150,.35)}
+.pob::before{background:linear-gradient(180deg,var(--orange),var(--blue))} .pob:hover{border-color:rgba(255,107,43,.35)}
+.pt2{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.9rem;gap:.8rem}
+.pi2{display:flex;align-items:center;gap:.8rem}
+.pico2{width:48px;height:48px;flex-shrink:0;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.pname{font-family:'Syne',sans-serif;font-size:1.08rem;color:var(--ink);margin-bottom:.12rem;line-height:1.2}
+.pmeta{font-size:.7rem;color:var(--ink4);font-family:'JetBrains Mono',monospace}
+.pbadge{padding:.19rem .68rem;border-radius:6px;font-size:.63rem;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:1.5px solid;white-space:nowrap}
+.bai{color:#5b21b6;background:#f5f3ff;border-color:#c4b5fd}
+.btf{color:var(--blue2);background:rgba(26,111,255,.06);border-color:rgba(26,111,255,.3)}
+.bci{color:#0e7490;background:#ecfeff;border-color:#67e8f9}
+.bsc{color:#065f46;background:#ecfdf5;border-color:#6ee7b7}
+.bob{color:#c2410c;background:#fff7ed;border-color:#fdba74}
+.pdesc{color:var(--ink3);font-size:.9rem;line-height:1.82;margin-bottom:1.1rem}
+.pwins{list-style:none;display:flex;flex-direction:column;gap:.44rem;margin-bottom:1.15rem}
+.pwins li{display:flex;align-items:flex-start;gap:.52rem;font-size:.85rem;color:var(--ink2)}
+.wd{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.af{margin:.95rem 0;padding:.82rem 1rem;background:linear-gradient(135deg,rgba(124,58,237,.05),rgba(232,67,147,.03));border:1.5px solid rgba(124,58,237,.18);border-radius:10px}
+.afl{font-size:.62rem;font-family:'JetBrains Mono',monospace;color:var(--violet);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.55rem;display:flex;align-items:center;gap:.4rem}
+.afl::before{content:'&#x25B6;';font-size:.5rem}
+.afs{display:flex;align-items:center;gap:.32rem;flex-wrap:wrap}
+.as{padding:.2rem .55rem;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:5px;font-size:.66rem;color:var(--violet);font-family:'JetBrains Mono',monospace}
+.aa{color:var(--violet);font-size:.8rem;font-weight:700}
+.ts{display:flex;flex-wrap:wrap;gap:.38rem}
+.st{display:flex;align-items:center;gap:4px;padding:.16rem .52rem;background:rgba(26,111,255,.08);border:1.5px solid rgba(26,111,255,.2);border-radius:5px;font-size:.67rem;color:var(--ink3);font-family:'JetBrains Mono',monospace;transition:all .15s}
+.st:hover{background:rgba(26,111,255,.15);color:var(--blue)}
+.st svg{width:11px;height:11px;flex-shrink:0}
+
+/* ─── RESUME ─── */
+#resume{background:var(--bg)}
+.tl{position:relative;display:flex;flex-direction:column}
+.tl::before{content:'';position:absolute;left:15px;top:10px;bottom:10px;width:2px;background:linear-gradient(180deg,var(--blue),var(--cyan),var(--green),rgba(26,111,255,.1));border-radius:2px}
+.ti{display:flex;gap:1.9rem;padding-bottom:2.6rem}
+.td{width:32px;height:32px;flex-shrink:0;border-radius:50%;background:var(--white);border:2.5px solid var(--blue);display:flex;align-items:center;justify-content:center;margin-top:2px;z-index:1;box-shadow:0 0 0 4px rgba(26,111,255,.12)}
+.td::after{content:'';width:10px;height:10px;background:var(--blue);border-radius:50%}
+.ti:nth-child(2) .td{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(0,184,212,.1)}.ti:nth-child(2) .td::after{background:var(--cyan)}
+.ti:nth-child(3) .td{border-color:var(--green);box-shadow:0 0 0 4px rgba(0,200,150,.1)}.ti:nth-child(3) .td::after{background:var(--green)}
+.ti:nth-child(n+4) .td{border-color:var(--ink4);box-shadow:0 0 0 4px rgba(26,111,255,.05)}.ti:nth-child(n+4) .td::after{background:var(--ink4)}
+.tb{flex:1}
+.th{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.35rem;margin-bottom:.14rem}
+.tr2{font-size:.95rem;font-weight:700;color:var(--ink);font-family:'Syne',sans-serif}
+.tp{font-size:.67rem;font-family:'JetBrains Mono',monospace;color:var(--ink4);padding:.16rem .52rem;background:rgba(26,111,255,.12);border:1px solid rgba(26,111,255,.28);border-radius:5px}
+.tco{font-size:.83rem;font-weight:700;margin-bottom:.6rem}
+.tls{list-style:none;display:flex;flex-direction:column;gap:.36rem}
+.tls li{font-size:.82rem;color:var(--ink3);display:flex;gap:.46rem;align-items:flex-start}
+.tls li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:7px;display:inline-block}
+.tch{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.58rem}
+.tch span{padding:.12rem .44rem;background:rgba(26,111,255,.12);border:1px solid rgba(26,111,255,.28);border-radius:5px;font-size:.64rem;color:var(--blue2);font-family:'JetBrains Mono',monospace}
+.er{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:.85rem;margin-top:2.5rem}
+.ec{padding:1.1rem;border-radius:13px}
+.edd{font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:.16rem;font-family:'Syne',sans-serif}
+.edu{font-size:.79rem;font-weight:600;color:var(--blue);margin-bottom:.06rem}
+.edy{font-size:.67rem;color:var(--ink4);font-family:'JetBrains Mono',monospace}
+
+/* ─── CONTACT ─── */
+#contact{background:var(--bg2)}
+.cw{display:grid;grid-template-columns:1fr 1.1fr;gap:2.8rem;align-items:start}
+.ccs{display:flex;flex-direction:column;gap:.82rem}
+.ccard{display:flex;align-items:center;gap:.82rem;padding:.9rem 1.2rem;transition:transform .18s,box-shadow .2s}
+.ccard:hover{transform:translateX(5px);box-shadow:var(--sdw2)}
+.cico{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px}
+.clbl{font-size:.66rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink4);margin-bottom:.06rem;font-family:'JetBrains Mono',monospace}
+.cval{font-size:.88rem;font-weight:700;color:var(--ink)}
+.ctab{padding:1.85rem;border-radius:20px;position:relative;overflow:hidden}
+.ctab::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,111,255,.1),rgba(0,184,212,.08));z-index:0}
+.ctab::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--green));z-index:1}
+.ctab>*{position:relative;z-index:2}
+.av{display:inline-flex;align-items:center;gap:.46rem;padding:.28rem .85rem;background:rgba(0,200,150,.1);border:1.5px solid rgba(0,200,150,.35);border-radius:100px;color:#065f46;font-size:.73rem;font-weight:700;margin-bottom:1.1rem}
+.avd{width:7px;height:7px;background:var(--green);border-radius:50%;animation:bk 2s ease infinite}
+.ctab h3{font-family:'Syne',sans-serif;font-size:1.35rem;color:var(--ink);margin-bottom:.6rem}
+.ctab p{color:var(--ink3);font-size:.86rem;line-height:1.86;margin-bottom:.7rem}
+
+/* ─── FOOTER ─── */
+footer{background:#04060f;color:rgba(255,255,255,.45);padding:1.8rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;position:relative;z-index:1}
+.ft{font-size:.74rem;font-family:'JetBrains Mono',monospace}.ft b{color:var(--cyan2)}
+/* status bar */
+.status-bar{display:flex;align-items:center;gap:1rem}
+.sb-item{display:flex;align-items:center;gap:.35rem;font-size:.65rem;color:rgba(255,255,255,.4)}
+.sb-dot{width:5px;height:5px;border-radius:50%;background:var(--green)}
+
+@media(max-width:960px){
+  nav{padding:.8rem 1.5rem}.navl,.ncta{display:none}
+  #hero{padding:7rem 1.5rem 4rem}.hrow{grid-template-columns:1fr}
+  section{padding:4rem 1.5rem}
+  .ag,.cw{grid-template-columns:1fr;gap:2rem}
+  footer{padding:1.4rem}
+  .n1,.n2,.n3,.n4,.n5,.n6,.n7,.n8{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- DEVOPS ARCHITECTURE BACKGROUND -->
+<div class="bg-scene">
+  <div class="mesh m1"></div><div class="mesh m2"></div>
+  <div class="mesh m3"></div><div class="mesh m4"></div>
+  <!-- Real-time architecture canvas -->
+  <canvas id="arch-canvas"></canvas>
+  <!-- Branded floating status nodes -->
+  <div class="node node-aws n1"><span class="node-dot"></span>AWS EKS &bull; 24 nodes</div>
+  <div class="node node-az n2"><span class="node-dot"></span>AKS &bull; Synced</div>
+  <div class="node node-k8s n3"><span class="node-dot"></span>kubectl &bull; 42 pods</div>
+  <div class="node node-ok n4"><span class="node-dot"></span>ArgoCD &bull; 8/8 Synced</div>
+  <div class="node node-ai n5"><span class="node-dot"></span>Claude Agent &bull; Active</div>
+  <div class="node node-ok n6"><span class="node-dot"></span>Vault &bull; Unsealed</div>
+  <div class="node node-gcp n7"><span class="node-dot"></span>GKE &bull; Running</div>
+  <div class="node node-aws n8"><span class="node-dot"></span>Terraform &bull; Applied</div>
+  <div class="node node-ok n9"><span class="node-dot"></span>Pipeline &bull; 98.4% pass</div>
+</div>
+<div class="circuit"></div>
+
+<script>
+(function(){
+  var canvas=document.getElementById('arch-canvas');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize);
+
+  // Node definitions: x%, y%, label, color, icon letter, type
+  var nodes=[
+    {xp:.12,yp:.18,label:'Dev Laptop',color:'#94a3b8',r:26,t:'dev'},
+    {xp:.28,yp:.12,label:'GitHub',color:'#f0f0f0',r:26,t:'vcs'},
+    {xp:.46,yp:.10,label:'Jenkins / Actions',color:'#ff4f3b',r:28,t:'ci'},
+    {xp:.64,yp:.12,label:'Docker Registry',color:'#2496ed',r:26,t:'reg'},
+    {xp:.80,yp:.18,label:'ArgoCD',color:'#ff8c5a',r:28,t:'argo'},
+    {xp:.72,yp:.42,label:'EKS (AWS)',color:'#ff9900',r:36,t:'aws'},
+    {xp:.55,yp:.55,label:'AKS (Azure)',color:'#0096ff',r:34,t:'azure'},
+    {xp:.84,yp:.60,label:'GKE (GCP)',color:'#4285f4',r:32,t:'gcp'},
+    {xp:.20,yp:.55,label:'Prometheus',color:'#ff6347',r:26,t:'mon'},
+    {xp:.08,yp:.42,label:'Grafana',color:'#ff8c00',r:26,t:'mon'},
+    {xp:.32,yp:.70,label:'Datadog',color:'#a259f7',r:24,t:'mon'},
+    {xp:.48,yp:.80,label:'Vault',color:'#ffd700',r:26,t:'sec'},
+    {xp:.66,yp:.78,label:'AI Agent',color:'#c084fc',r:30,t:'ai'},
+    {xp:.18,yp:.82,label:'Terraform',color:'#9f67ff',r:26,t:'tf'},
+    {xp:.36,yp:.38,label:'Helm',color:'#5b8ef5',r:24,t:'helm'},
+  ];
+
+  // Edges: [from, to, color, label]
+  var edges=[
+    [0,1,'#b0bec5','push'],
+    [1,2,'#ffffff','trigger'],
+    [2,3,'#ff6347','build & push'],
+    [3,4,'#2496ed','sync'],
+    [4,5,'#ff8c5a','deploy'],
+    [4,6,'#ff8c5a','deploy'],
+    [4,7,'#ff8c5a','deploy'],
+    [2,14,'#ff6347','lint'],
+    [14,5,'#9f67ff','provision'],
+    [14,6,'#9f67ff','provision'],
+    [14,7,'#9f67ff','provision'],
+    [8,5,'#ff6347','scrape'],
+    [9,8,'#ff8c00','dashboards'],
+    [10,5,'#a259f7','monitor'],
+    [11,5,'#ffd700','secrets'],
+    [11,6,'#ffd700','secrets'],
+    [12,2,'#c084fc','AI review'],
+    [12,4,'#c084fc','AI sync'],
+  ];
+
+  // Animated packets on edges
+  var packets=[];
+  edges.forEach(function(e,i){
+    packets.push({edge:i,t:Math.random(),speed:.0014+Math.random()*.002,col:e[2]});
+    packets.push({edge:i,t:Math.random()+.33,speed:.0012+Math.random()*.0018,col:e[2]});
+    packets.push({edge:i,t:Math.random()+.66,speed:.001+Math.random()*.0016,col:e[2]});
+  });
+
+  var tick=0;
+  function getXY(node){
+    return {x:node.xp*canvas.width, y:node.yp*canvas.height};
+  }
+
+  function drawArch(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    tick++;
+
+    // Draw edges
+    edges.forEach(function(e){
+      var a=getXY(nodes[e[0]]),b=getXY(nodes[e[1]]);
+      var grad=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
+      grad.addColorStop(0,hexAlpha(e[2],.12));
+      grad.addColorStop(.5,hexAlpha(e[2],.45));
+      grad.addColorStop(1,hexAlpha(e[2],.12));
+      ctx.beginPath();
+      ctx.moveTo(a.x,a.y);
+      var mx=(a.x+b.x)/2+(b.y-a.y)*.08, my=(a.y+b.y)/2-(b.x-a.x)*.08;
+      ctx.quadraticCurveTo(mx,my,b.x,b.y);
+      ctx.strokeStyle=grad;
+      ctx.lineWidth=1.5;
+      ctx.setLineDash([8,5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    });
+
+    // Draw packets
+    packets.forEach(function(p){
+      p.t+=p.speed;
+      if(p.t>1)p.t-=1;
+      var e=edges[p.edge];
+      var a=getXY(nodes[e[0]]),b=getXY(nodes[e[1]]);
+      var mx=(a.x+b.x)/2+(b.y-a.y)*.08, my=(a.y+b.y)/2-(b.x-a.x)*.08;
+      var t=p.t;
+      // quadratic bezier point
+      var px=Math.pow(1-t,2)*a.x+2*(1-t)*t*mx+t*t*b.x;
+      var py=Math.pow(1-t,2)*a.y+2*(1-t)*t*my+t*t*b.y;
+      // trail
+      var trail=ctx.createRadialGradient(px,py,0,px,py,7);
+      trail.addColorStop(0,hexAlpha(p.col,.7));
+      trail.addColorStop(1,hexAlpha(p.col,0));
+      ctx.beginPath();
+      ctx.arc(px,py,7,0,Math.PI*2);
+      ctx.fillStyle=trail;
+      ctx.fill();
+      // dot
+      ctx.beginPath();
+      ctx.arc(px,py,2.5,0,Math.PI*2);
+      ctx.fillStyle=p.col;
+      ctx.globalAlpha=.9;
+      ctx.fill();
+      ctx.globalAlpha=1;
+    });
+
+    // Draw nodes
+    nodes.forEach(function(n,i){
+      var pos=getXY(n);
+      var pulse=Math.sin(tick*.04+i*0.7)*.4+.6;
+      // outer glow ring
+      ctx.beginPath();
+      ctx.arc(pos.x,pos.y,n.r+8,0,Math.PI*2);
+      ctx.strokeStyle=hexAlpha(n.color,.35*pulse);
+      ctx.lineWidth=2.5;
+      ctx.stroke();
+      // pulse ping ring
+      var pr=n.r+14+Math.sin(tick*.05+i)*6;
+      ctx.beginPath();
+      ctx.arc(pos.x,pos.y,pr,0,Math.PI*2);
+      ctx.strokeStyle=hexAlpha(n.color,.15*pulse);
+      ctx.lineWidth=1.2;
+      ctx.stroke();
+      // glow fill
+      ctx.beginPath();
+      ctx.arc(pos.x,pos.y,n.r,0,Math.PI*2);
+      var g=ctx.createRadialGradient(pos.x-n.r*.3,pos.y-n.r*.3,2,pos.x,pos.y,n.r);
+      g.addColorStop(0,hexAlpha(n.color,.55));
+      g.addColorStop(.6,hexAlpha(n.color,.25));
+      g.addColorStop(1,hexAlpha(n.color,.1));
+      ctx.fillStyle=g;
+      ctx.fill();
+      ctx.strokeStyle=hexAlpha(n.color,.85);
+      ctx.lineWidth=2;
+      ctx.stroke();
+      // extra bright ring
+      ctx.beginPath();
+      ctx.arc(pos.x,pos.y,n.r-3,0,Math.PI*2);
+      ctx.strokeStyle=hexAlpha(n.color,.25);
+      ctx.lineWidth=1;
+      ctx.stroke();
+      // label background pill
+      var lw=ctx.measureText(n.label).width+14;
+      ctx.beginPath();
+      ctx.roundRect(pos.x-lw/2,pos.y+n.r+5,lw,14,4);
+      ctx.fillStyle=hexAlpha(n.color,.18);
+      ctx.fill();
+      // label text
+      ctx.font='bold 8px JetBrains Mono, monospace';
+      ctx.textAlign='center';
+      ctx.fillStyle=n.color;
+      ctx.globalAlpha=.95;
+      ctx.fillText(n.label,pos.x,pos.y+n.r+15);
+      ctx.globalAlpha=1;
+    });
+    requestAnimationFrame(drawArch);
+  }
+  drawArch();
+
+  function hexAlpha(hex,alpha){
+    var r=parseInt(hex.slice(1,3)||'88',16);
+    var g=parseInt(hex.slice(3,5)||'88',16);
+    var b=parseInt(hex.slice(5,7)||'88',16);
+    if(hex.length<4){r=g=b=136;}
+    return 'rgba('+r+','+g+','+b+','+alpha+')';
+  }
+})();
+</script>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.24L20 8.5v7L12 19.76 4 15.5v-7L12 4.24zM12 7l-5 2.5V14l5 2.5 5-2.5V9.5L12 7z"/></svg>
+    </div>
+    <span class="logo-text"><b>Sai</b>_Tummala</span>
+  </div>
+  <ul class="navl">
+    <li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li><li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:stummala5454@gmail.com" class="ncta">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    Hire Me
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+<div class="hrow">
+<div>
+  <div class="term-badge">
+    <span class="tb-dot"></span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ink4)">$ status: <span style="color:var(--green)">open_to_work</span></span>
+  </div>
+  <h1 class="nm">
+    <span class="nm-first">Sai</span><br>
+    <span class="nm-last">Tummala</span>
+  </h1>
+  <div class="role-pill">
+    <span class="role-text">Senior DevOps &amp; Cloud Engineer</span>
+    <span class="role-sep"></span>
+    <span class="sre-badge">SRE</span>
+  </div>
+  <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;animation:fu .55s .25s ease both">
+    <span style="display:inline-flex;align-items:center;padding:.22rem .75rem;background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.32);border-radius:100px;font-size:.72rem;font-weight:700;color:var(--cyan);letter-spacing:.04em">Platform</span>
+    <span style="display:inline-flex;align-items:center;padding:.22rem .75rem;background:rgba(0,200,150,.08);border:1px solid rgba(0,200,150,.32);border-radius:100px;font-size:.72rem;font-weight:700;color:var(--green);letter-spacing:.04em">Infrastructure</span>
+    <span style="display:inline-flex;align-items:center;padding:.22rem .75rem;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.32);border-radius:100px;font-size:.72rem;font-weight:700;color:#b08aff;letter-spacing:.04em">Observability</span>
+  </div>
+  <p class="hdesc"><strong>8+ years</strong> architecting resilient multi-cloud infrastructure, automating deployments at scale, and integrating <strong>Agentic AI</strong> into DevOps workflows. AWS Certified. Healthcare &amp; finance-grade reliability.</p>
+  <div class="crow">
+    <span class="cp caws"><svg viewBox="0 0 24 24"><path fill="#ff9900" d="M6.76 10.04c0 .3.03.54.09.71.06.18.14.37.26.58l.06.18c0 .08-.05.16-.15.24l-.5.34-.21.07c-.08 0-.16-.04-.24-.11-.12-.1-.22-.23-.29-.38-.09-.17-.18-.33-.25-.47-.62.73-1.4 1.1-2.35 1.1-.67 0-1.2-.19-1.6-.57-.39-.38-.59-.9-.59-1.53 0-.68.24-1.23.73-1.64.49-.42 1.13-.62 1.96-.62.27 0 .55.02.85.06.3.04.6.1.92.18v-.58c0-.61-.13-1.03-.38-1.28-.25-.25-.69-.37-1.3-.37-.28 0-.57.03-.86.1-.3.07-.58.16-.86.27l-.21.09c-.11 0-.17-.08-.17-.25v-.39c0-.13.02-.22.06-.28a.6.6 0 01.22-.17c.28-.14.61-.26 1-.36A4.84 4.84 0 015.9 5.03c.95 0 1.64.22 2.09.65.44.43.66 1.08.66 1.96v2.59z M15.31 11.25c.26 0 .53-.05.82-.14.29-.1.54-.27.76-.51.13-.15.22-.32.27-.51.05-.19.08-.42.08-.69v-.34c-.24-.05-.49-.1-.74-.14-.25-.04-.5-.05-.75-.05-.54 0-.93.1-1.19.32-.26.22-.39.52-.39.92 0 .37.1.65.3.84.19.2.47.3.84.3z M9.85 11.99c-.4-.1-.71-.2-.92-.32-.13-.07-.22-.15-.25-.22a.56.56 0 01-.05-.23v-.41c0-.17.06-.25.18-.25l.14.02.2.08c.27.12.57.22.88.28.32.06.63.1.95.1.5 0 .89-.09 1.17-.26a.86.86 0 00.41-.76.78.78 0 00-.22-.56c-.14-.15-.41-.29-.81-.42l-1.16-.36c-.58-.18-1.01-.45-1.28-.81a1.9 1.9 0 01-.4-1.16c0-.33.07-.63.22-.89.14-.25.34-.48.58-.65.25-.18.53-.32.84-.41.32-.1.66-.14 1.01-.14.17 0 .36.01.54.03.18.02.35.06.52.09.16.04.31.08.45.13.14.05.26.1.34.14a.69.69 0 01.24.2.43.43 0 01.07.26v.38c0 .17-.06.26-.18.26a.83.83 0 01-.3-.1 3.65 3.65 0 00-1.53-.31c-.46 0-.82.07-1.06.22-.25.15-.37.38-.37.71 0 .22.08.42.24.57.16.15.45.3.88.44l1.13.36c.58.18.99.44 1.24.77.25.33.37.7.37 1.12 0 .34-.07.65-.21.93-.14.27-.34.51-.58.7-.25.2-.54.34-.89.45-.36.11-.74.17-1.16.17-.42 0-.83-.05-1.23-.14z"/></svg>AWS</span>
+    <span class="cp caz"><svg viewBox="0 0 96 96"><path fill="#0078D4" d="M33.3 6.5h26L32.2 89.5a4.15 4.15 0 01-3.93 2.8H8.2a4.15 4.15 0 01-3.93-5.49L29.4 9.34A4.15 4.15 0 0133.3 6.5z"/><path fill="#50e6ff" d="M66.6 9.34A4.15 4.15 0 0062.6 6.5H33.6a4.15 4.15 0 013.9 2.84L62.8 86.8a4.15 4.15 0 01-3.93 5.49H87.9a4.15 4.15 0 003.93-5.49L66.6 9.34z"/></svg>Azure</span>
+    <span class="cp cgcp"><svg viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.36L8.29 1.65C9.47 1.24 10.71 1 12 1v4.36z"/><path fill="#FBBC04" d="M5.36 12H1C1 9.07 2.01 6.37 3.75 4.27l3.04 3.04A6.97 6.97 0 005.36 12z"/><path fill="#34A853" d="M12 18.64V23c-2.93 0-5.63-1.01-7.73-2.75l3.04-3.04A4.98 4.98 0 0012 18.64z"/><path fill="#4285F4" d="M19 12a7 7 0 01-7 7v-4.36a2.64 2.64 0 000-5.28V5.36A7 7 0 0119 12z"/></svg>GCP</span>
+    <span class="cp ck8s"><svg viewBox="0 0 24 24"><path fill="#326CE5" d="M10.2 14.35l.01.01-1 2.41a5.17 5.17 0 01-2.07-2.6l2.58-.43.48.61zm4.07-9.27a5.27 5.27 0 00-3-.18l1.03 2.36.6.47a.7.7 0 00.98-.16l1.34-2.18a5.27 5.27 0 00-.96-.69zM12 1a11 11 0 100 22A11 11 0 0012 1zm0 2a9 9 0 110 18A9 9 0 0112 3z"/></svg>Kubernetes</span>
+    <span class="cp ctf"><svg viewBox="0 0 24 24"><path fill="#7b42bc" d="M2 0L9.22 4.22v8.44L2 8.44zm8.66 4.22l7.23 4.22v8.44l-7.23-4.22zm7.77 0L24 8.44v8.44l-5.57-3.22zm-8.21 9.22l7.23 4.22V24l-7.23-4.22z"/></svg>Terraform</span>
+    <span class="cp cai"><svg viewBox="0 0 24 24" fill="#7c3aed"><path d="M12 2a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0 014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Agent AI</span>
+    <span class="cp cargo"><svg viewBox="0 0 24 24" fill="#EF7B4D"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>ArgoCD</span>
+    <span class="cp cdock"><svg viewBox="0 0 24 24" fill="#2496ED"><path d="M13.98 11.08h2.12a.19.19 0 00.19-.19V9.01a.19.19 0 00-.19-.19h-2.12a.18.18 0 00-.19.19v1.89c0 .1.08.18.19.18m-2.95-5.43h2.12a.19.19 0 00.19-.19V3.57a.19.19 0 00-.19-.19h-2.12a.18.18 0 00-.18.19v1.89c0 .1.08.18.18.18m0 2.72h2.12a.19.19 0 00.19-.19V6.29a.19.19 0 00-.19-.19h-2.12a.18.18 0 00-.18.19v1.89c0 .1.08.18.18.18m-2.93 0h2.12a.19.19 0 00.18-.19V6.29a.18.18 0 00-.18-.19H8.1a.18.18 0 00-.19.19v1.89c0 .1.09.18.19.18"/></svg>Docker</span>
+  </div>
+  <div class="hbtns">
+    <a href="#projects" class="btn1">View Projects &#x2192;</a>
+    <a href="#contact" class="btn2">Get In Touch</a>
+  </div>
+</div>
+
+<!-- PIPELINE CARD -->
+<div class="pipeline-card">
+  <div class="pc-title">CI/CD Pipeline &bull; Live Status</div>
+  <div class="mini-pipe">
+    <div class="mpstage"><div class="mpbox mp-git">CODE</div><div class="mpdot" style="background:#EF7B4D;animation-delay:0s"></div></div>
+    <div class="mp-arrow">&#x25B8;</div>
+    <div class="mpstage"><div class="mpbox mp-build">BUILD</div><div class="mpdot" style="background:var(--blue);animation-delay:.3s"></div></div>
+    <div class="mp-arrow">&#x25B8;</div>
+    <div class="mpstage"><div class="mpbox mp-test">TEST</div><div class="mpdot" style="background:#f59e0b;animation-delay:.6s"></div></div>
+    <div class="mp-arrow">&#x25B8;</div>
+    <div class="mpstage"><div class="mpbox mp-scan">SCAN</div><div class="mpdot" style="background:var(--green);animation-delay:.9s"></div></div>
+    <div class="mp-arrow">&#x25B8;</div>
+    <div class="mpstage"><div class="mpbox mp-push">PUSH</div><div class="mpdot" style="background:var(--violet);animation-delay:1.2s"></div></div>
+    <div class="mp-arrow">&#x25B8;</div>
+    <div class="mpstage"><div class="mpbox mp-dep">DEPLOY</div><div class="mpdot" style="background:var(--cyan);animation-delay:1.5s"></div></div>
+    <div class="mp-arrow">&#x25B8;</div>
+    <div class="mpstage"><div class="mpbox mp-ok">&#x2713; LIVE</div><div class="mpdot" style="background:var(--green);animation-delay:1.8s"></div></div>
+  </div>
+  <div class="sgrid">
+    <div class="sbox sx1"><span class="snum">8+</span><div class="slbx">Years Exp.</div></div>
+    <div class="sbox sx2"><span class="snum">3</span><div class="slbx">Clouds</div></div>
+    <div class="sbox sx3"><span class="snum">30+</span><div class="slbx">Microservices</div></div>
+    <div class="sbox sx4"><span class="snum">AWS</span><div class="slbx">Certified</div></div>
+  </div>
+  <div class="metrics-row">
+    <div class="metric"><span class="mval">98.9%</span><span class="mlbl">Uptime SLO</span></div>
+    <div class="metric"><span class="mval">&lt;2m</span><span class="mlbl">Rollback</span></div>
+    <div class="metric"><span class="mval">60%&#x2193;</span><span class="mlbl">Incidents</span></div>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="wrap">
+  <div class="slbl">ABOUT ME</div>
+  <h2 class="stitle">The Engineer Behind the <span>Infrastructure</span></h2>
+  <div class="sline"></div>
+  <div class="ag">
+    <div class="at">
+      <p>I'm a Senior DevOps &amp; SRE with over <strong>8 years</strong> of hands-on experience building, automating, and scaling cloud infrastructure across AWS, Azure, and GCP. Worked with healthcare giants like <strong>UnitedHealth</strong>, research firms like <strong>Gartner</strong>, global banks like <strong>HSBC</strong>, and telecom leaders like <strong>Airtel</strong>.</p>
+      <p>My work sits at the intersection of infrastructure engineering and modern AI tooling. I actively integrate <strong>Agentic AI models</strong> &mdash; Claude, GitHub Copilot, and LLM pipelines &mdash; into DevOps workflows to accelerate incident response, validate IaC code, and generate operational documentation at scale.</p>
+      <p>I hold an <strong>AWS Certified Solutions Architect &ndash; Associate</strong> certification and an MSc in Business Analytics from Lewis University. Infrastructure should be invisible: self-healing, self-documenting, always on.</p>
+    </div>
+    <div class="hics">
+      <div class="hic card" style="position:relative"><div class="hii" style="background:rgba(124,58,237,.18)">&#x1F916;</div><div><div class="hit">AI-Augmented DevOps</div><div class="hid">Claude, Copilot &amp; LLM agents in CI/CD, IaC review, incident triage.</div></div></div>
+      <div class="hic card" style="position:relative"><div class="hii" style="background:rgba(26,111,255,.15)">&#x2601;&#xFE0F;</div><div><div class="hit">Multi-Cloud Architecture</div><div class="hid">Production workloads across AWS, Azure, GCP with Terraform &amp; GitOps.</div></div></div>
+      <div class="hic card" style="position:relative"><div class="hii" style="background:rgba(0,200,150,.12)">&#x1F512;</div><div><div class="hit">Cloud Security &amp; Compliance</div><div class="hid">IAM hardening, HashiCorp Vault, RBAC, HIPAA standards.</div></div></div>
+      <div class="hic card" style="position:relative"><div class="hii" style="background:rgba(0,184,212,.12)">&#x2699;&#xFE0F;</div><div><div class="hit">GitOps &amp; Kubernetes SRE</div><div class="hid">ArgoCD deployments, on-call rotations, RCA, SLO engineering.</div></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="wrap">
+  <div class="slbl">TECHNICAL SKILLS</div>
+  <h2 class="stitle">Full-Stack <span>Cloud Toolkit</span></h2>
+  <div class="sline"></div>
+  <div class="sg">
+
+    <div class="sb card">
+      <div class="sbt"><div class="sbt-bar"></div>Cloud Platforms</div>
+      <div class="its">
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#ff9900" d="M6.76 10.04c0 .3.03.54.09.71l.26.58.06.18c0 .08-.05.16-.15.24l-.5.34-.21.07c-.08 0-.16-.04-.24-.11-.12-.1-.22-.23-.29-.38-.09-.17-.18-.33-.25-.47-.62.73-1.4 1.1-2.35 1.1-.67 0-1.2-.19-1.6-.57-.39-.38-.59-.9-.59-1.53 0-.68.24-1.23.73-1.64.49-.42 1.13-.62 1.96-.62.27 0 .55.02.85.06.3.04.6.1.92.18v-.58c0-.61-.13-1.03-.38-1.28C5.5 6.12 5.06 6 4.46 6c-.28 0-.57.03-.86.1-.3.07-.58.16-.86.27l-.21.09c-.11 0-.17-.08-.17-.25v-.39c0-.13.02-.22.06-.28a.6.6 0 01.22-.17c.28-.14.61-.26 1-.36A4.84 4.84 0 015.9 5.03c.95 0 1.64.22 2.09.65.44.43.66 1.08.66 1.96v2.59z"/></svg>AWS EC2/S3/EKS</span>
+        <span class="it"><svg viewBox="0 0 96 96" width="14" height="14"><path fill="#0078D4" d="M33.3 6.5h26L32.2 89.5a4.15 4.15 0 01-3.93 2.8H8.2a4.15 4.15 0 01-3.93-5.49L29.4 9.34A4.15 4.15 0 0133.3 6.5z"/></svg>Azure AKS/VMs</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#EA4335" d="M12 5.36L8.29 1.65C9.47 1.24 10.71 1 12 1v4.36z"/><path fill="#FBBC04" d="M5.36 12H1C1 9.07 2.01 6.37 3.75 4.27l3.04 3.04A6.97 6.97 0 005.36 12z"/><path fill="#34A853" d="M12 18.64V23c-2.93 0-5.63-1.01-7.73-2.75l3.04-3.04A4.98 4.98 0 0012 18.64z"/><path fill="#4285F4" d="M19 12a7 7 0 01-7 7v-4.36a2.64 2.64 0 000-5.28V5.36A7 7 0 0119 12z"/></svg>GCP</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#ff9900"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>Lambda/Route53/RDS</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0078D4"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg>Azure AD / RBAC</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#ff9900"><path d="M3 3h18v2H3zm0 4h12v2H3zm0 4h18v2H3z"/></svg>ELB / VPC / Auto Scaling</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0078D4"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>App Services / AKS</span>
+      </div>
+    </div>
+
+    <div class="sb card">
+      <div class="sbt"><div class="sbt-bar" style="background:var(--violet)"></div>IaC &amp; Config Management</div>
+      <div class="its">
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#7b42bc" d="M2 0L9.22 4.22v8.44L2 8.44zm8.66 4.22l7.23 4.22v8.44l-7.23-4.22zm7.77 0L24 8.44v8.44l-5.57-3.22zm-8.21 9.22l7.23 4.22V24l-7.23-4.22z"/></svg>Terraform</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#ff9900"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>CloudFormation</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#EE0000" d="M12 0L1.6 6v12L12 24l10.4-6V6z"/></svg>Ansible</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#F09820"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>Chef</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0078D4"><path d="M3 3h18v18H3z"/></svg>ARM Templates</span>
+      </div>
+    </div>
+
+    <div class="sb card">
+      <div class="sbt"><div class="sbt-bar" style="background:var(--cyan)"></div>Containers &amp; Orchestration</div>
+      <div class="its">
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#2496ED"><path d="M13.98 11.08h2.12a.19.19 0 00.19-.19V9.01a.19.19 0 00-.19-.19h-2.12a.18.18 0 00-.19.19v1.89c0 .1.08.18.19.18m-2.95-5.43h2.12a.19.19 0 00.19-.19V3.57a.19.19 0 00-.19-.19h-2.12a.18.18 0 00-.18.19v1.89c0 .1.08.18.18.18m0 2.72h2.12a.19.19 0 00.19-.19V6.29a.19.19 0 00-.19-.19h-2.12a.18.18 0 00-.18.19v1.89c0 .1.08.18.18.18m-2.93 0h2.12a.19.19 0 00.18-.19V6.29a.18.18 0 00-.18-.19H8.1a.18.18 0 00-.19.19v1.89c0 .1.09.18.19.18"/></svg>Docker</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#326CE5" d="M10.2 14.35l.01.01-1 2.41a5.17 5.17 0 01-2.07-2.6l2.58-.43.48.61zm4.07-9.27a5.27 5.27 0 00-3-.18l1.03 2.36.6.47a.7.7 0 00.98-.16l1.34-2.18a5.27 5.27 0 00-.96-.69zM12 1a11 11 0 100 22A11 11 0 0012 1zm0 2a9 9 0 110 18A9 9 0 0112 3z"/></svg>Kubernetes</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0F1689"><path d="M12 2L2 12l10 10 10-10z"/></svg>Helm</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#EF7B4D"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>ArgoCD</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#326CE5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg>EKS / AKS</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#EF7B4D"><circle cx="12" cy="12" r="5"/></svg>Argo Rollouts</span>
+      </div>
+    </div>
+
+    <div class="sb card">
+      <div class="sbt"><div class="sbt-bar" style="background:var(--orange)"></div>CI/CD &amp; Build Tools</div>
+      <div class="its">
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#D24939" d="M23.68 14.9a3.43 3.43 0 01-.97 2.32l-5.58 5.59A3.44 3.44 0 0114.8 23.9H9.18a3.44 3.44 0 01-2.32-.97L1.28 17.22a3.44 3.44 0 01-.97-2.32V9.18c0-.85.35-1.69.97-2.32L6.86 1.27A3.43 3.43 0 019.18.3H14.8c.85 0 1.69.35 2.33.97l5.58 5.59a3.43 3.43 0 01.97 2.32z"/></svg>Jenkins</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0078D4"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>Azure DevOps</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#24292e" d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.56 9.56 0 015 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.75c0 .27.18.57.69.47A10.02 10.02 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>GitHub Actions</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#FC6D26"><path d="M4.85.9c-.52 0-.94.43-.94.95l-.01 12.76-1.47-1.47a.94.94 0 10-1.33 1.33l3.1 3.1a.94.94 0 001.34 0l3.1-3.1a.94.94 0 10-1.33-1.33l-1.47 1.47V1.85A.94.94 0 004.85.9z"/></svg>GitLab CI</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#4caf50"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>SonarQube</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#40BE46"><circle cx="12" cy="12" r="9"/></svg>Nexus / Maven</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#00b4d8"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>Trivy</span>
+      </div>
+    </div>
+
+    <div class="sb card">
+      <div class="sbt"><div class="sbt-bar" style="background:var(--violet)"></div>AI &amp; Agentic Tools</div>
+      <div class="its">
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#24292e" d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.56 9.56 0 015 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.75c0 .27.18.57.69.47A10.02 10.02 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>GitHub Copilot</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#d97706"><circle cx="12" cy="12" r="10"/></svg>Claude (Anthropic)</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#10a37f"><circle cx="12" cy="12" r="10"/></svg>ChatGPT / GPT-4o</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#a78bfa"><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42A6.92 6.92 0 0119 12c0 3.87-3.13 7-7 7a7 7 0 01-7-7c0-2.28 1.09-4.3 2.79-5.61L6.37 4.97A9.01 9.01 0 003 12a9 9 0 0018 0c0-2.74-1.22-5.27-3.17-7.17z"/></svg>Cursor IDE</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#7c3aed"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>LLM IaC Review</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#e84393"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>AI Incident Triage</span>
+      </div>
+    </div>
+
+    <div class="sb card">
+      <div class="sbt"><div class="sbt-bar" style="background:var(--orange)"></div>Monitoring &amp; Observability</div>
+      <div class="its">
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#E6522C"><circle cx="12" cy="12" r="9"/></svg>Prometheus</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#F46800"><path d="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z"/></svg>Grafana</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#005571"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>ELK Stack</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#632CA6"><circle cx="12" cy="12" r="9"/></svg>Datadog</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#ff9900"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>CloudWatch</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0078D4"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>Azure Monitor</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#e83e8c"><circle cx="12" cy="12" r="9"/></svg>PagerDuty</span>
+      </div>
+    </div>
+
+    <div class="sb card">
+      <div class="sbt"><div class="sbt-bar" style="background:var(--green)"></div>Security &amp; Identity</div>
+      <div class="its">
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#ff9900"><path d="M12 2L4 6v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4z"/></svg>AWS IAM</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0078D4"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg>Azure RBAC</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#c8a500"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>HashiCorp Vault</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#10b981"><path d="M9 12l2 2 4-4m5.62-4.02A12 12 0 0112 2.94a12 12 0 01-8.62 3.04A12.02 12.02 0 003 9c0 5.59 3.82 10.29 9 11.62 5.18-1.33 9-6.03 9-11.62 0-1.04-.13-2.05-.38-3.02z"/></svg>MFA / SSO</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#10b981"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/></svg>NSGs / Sec Groups</span>
+      </div>
+    </div>
+
+    <div class="sb card">
+      <div class="sbt"><div class="sbt-bar" style="background:var(--blue)"></div>Languages &amp; Scripting</div>
+      <div class="its">
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#3776AB"><path d="M14.31.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.23.02-.2-.01H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18z"/></svg>Python</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#89e051"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>Bash / Shell</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#00ACD7"><path d="M11 11h2v2h-2zm-8 0h2v2H3zm16 0h2v2h-2z"/></svg>Go (Basic)</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14" fill="#CB171E"><path d="M11.5 2L2 7v10l9.5 5 9.5-5V7z"/></svg>YAML / JSON</span>
+        <span class="it"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#7b42bc" d="M2 0L9.22 4.22v8.44L2 8.44z"/></svg>HCL (Terraform)</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="certbar">
+    <svg viewBox="0 0 24 24" fill="#1a6fff"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    <div><div class="cn">AWS Certified Solutions Architect &ndash; Associate</div><div class="cs">Amazon Web Services &middot; Active Certification</div></div>
+  </div>
+</div>
+</section>
+
+<!-- VISUAL GALLERY -->
+<section id="gallery" style="background:var(--bg);padding:5rem 3rem">
+<div class="wrap">
+  <div class="slbl">TECH ECOSYSTEM</div>
+  <h2 class="stitle">Tools &amp; <span>Platforms in Action</span></h2>
+  <div class="sline"></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem">
+
+    <!-- Kubernetes Cluster -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(26,111,255,.2)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#326CE5"><circle cx="12" cy="12" r="9"/></svg>Kubernetes Cluster
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#0f1b3d">
+        <defs><radialGradient id="kg" cx="50%" cy="30%"><stop offset="0%" stop-color="#1a3a7a"/><stop offset="100%" stop-color="#0a1228"/></radialGradient></defs>
+        <rect width="280" height="160" fill="url(#kg)"/>
+        <!-- Grid lines -->
+        <line x1="0" y1="40" x2="280" y2="40" stroke="rgba(50,108,229,.15)" stroke-width=".5"/>
+        <line x1="0" y1="80" x2="280" y2="80" stroke="rgba(50,108,229,.15)" stroke-width=".5"/>
+        <line x1="0" y1="120" x2="280" y2="120" stroke="rgba(50,108,229,.15)" stroke-width=".5"/>
+        <!-- Master node -->
+        <rect x="105" y="14" width="70" height="28" rx="6" fill="#93c5fd" stroke="#3b82f6" stroke-width="1"/>
+        <text x="140" y="25" text-anchor="middle" fill="#93c5fd" font-size="7" font-family="JetBrains Mono">Control Plane</text>
+        <text x="140" y="35" text-anchor="middle" fill="#60a5fa" font-size="6" font-family="JetBrains Mono">API Server</text>
+        <!-- Connector lines -->
+        <line x1="140" y1="42" x2="50" y2="68" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+        <line x1="140" y1="42" x2="140" y2="68" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+        <line x1="140" y1="42" x2="230" y2="68" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,2"/>
+        <!-- Worker nodes -->
+        <rect x="15" y="68" width="68" height="26" rx="5" fill="#1e3a5f" stroke="#0ea5e9" stroke-width="1"/>
+        <text x="49" y="79" text-anchor="middle" fill="#7dd3fc" font-size="6.5" font-family="JetBrains Mono">Node-1</text>
+        <text x="49" y="88" text-anchor="middle" fill="#38bdf8" font-size="5.5" font-family="JetBrains Mono">4 pods running</text>
+        <rect x="106" y="68" width="68" height="26" rx="5" fill="#1e3a5f" stroke="#0ea5e9" stroke-width="1"/>
+        <text x="140" y="79" text-anchor="middle" fill="#7dd3fc" font-size="6.5" font-family="JetBrains Mono">Node-2</text>
+        <text x="140" y="88" text-anchor="middle" fill="#38bdf8" font-size="5.5" font-family="JetBrains Mono">6 pods running</text>
+        <rect x="197" y="68" width="68" height="26" rx="5" fill="#1e3a5f" stroke="#0ea5e9" stroke-width="1"/>
+        <text x="231" y="79" text-anchor="middle" fill="#7dd3fc" font-size="6.5" font-family="JetBrains Mono">Node-3</text>
+        <text x="231" y="88" text-anchor="middle" fill="#38bdf8" font-size="5.5" font-family="JetBrains Mono">5 pods running</text>
+        <!-- Pod dots -->
+        <circle cx="22" cy="106" r="4" fill="#22d3ee"/><circle cx="32" cy="106" r="4" fill="#22d3ee"/><circle cx="42" cy="106" r="4" fill="#22d3ee"/><circle cx="52" cy="106" r="4" fill="#22d3ee"/>
+        <circle cx="115" cy="106" r="4" fill="#34d399"/><circle cx="125" cy="106" r="4" fill="#34d399"/><circle cx="135" cy="106" r="4" fill="#34d399"/><circle cx="145" cy="106" r="4" fill="#34d399"/><circle cx="155" cy="106" r="4" fill="#34d399"/><circle cx="165" cy="106" r="4" fill="#34d399"/>
+        <circle cx="204" cy="106" r="4" fill="#a78bfa"/><circle cx="214" cy="106" r="4" fill="#a78bfa"/><circle cx="224" cy="106" r="4" fill="#a78bfa"/><circle cx="234" cy="106" r="4" fill="#a78bfa"/><circle cx="244" cy="106" r="4" fill="#a78bfa"/>
+        <!-- Status bar -->
+        <rect x="10" y="126" width="260" height="24" rx="5" fill="rgba(0,0,0,.3)"/>
+        <circle cx="22" cy="138" r="4" fill="#34d399"/><text x="30" y="141" fill="#6ee7b7" font-size="6" font-family="JetBrains Mono">15 pods ● Healthy</text>
+        <circle cx="130" cy="138" r="4" fill="#fbbf24"/><text x="138" y="141" fill="#fde68a" font-size="6" font-family="JetBrains Mono">CPU: 42%</text>
+        <circle cx="195" cy="138" r="4" fill="#60a5fa"/><text x="203" y="141" fill="#bfdbfe" font-size="6" font-family="JetBrains Mono">Mem: 61%</text>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">Kubernetes Cluster Management</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">EKS &bull; AKS &bull; Multi-node orchestration</div>
+    </div>
+
+    <!-- CI/CD Pipeline -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(26,111,255,.2)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#D24939"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>CI/CD Pipeline
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#0d1117">
+        <rect width="280" height="160" fill="#0d1117"/>
+        <!-- Top bar -->
+        <rect x="0" y="0" width="280" height="22" fill="#161b22"/>
+        <circle cx="10" cy="11" r="4" fill="#ff5f57"/><circle cx="22" cy="11" r="4" fill="#febc2e"/><circle cx="34" cy="11" r="4" fill="#28c840"/>
+        <text x="140" y="15" text-anchor="middle" fill="#8b949e" font-size="7" font-family="JetBrains Mono">GitHub Actions — Pipeline #247</text>
+        <!-- Stage blocks -->
+        <rect x="8" y="32" width="36" height="44" rx="5" fill="#1f2937" stroke="#EF7B4D" stroke-width="1.5"/>
+        <text x="26" y="49" text-anchor="middle" fill="#fb923c" font-size="6" font-family="JetBrains Mono">CODE</text>
+        <text x="26" y="59" text-anchor="middle" fill="#fdba74" font-size="5" font-family="JetBrains Mono">git push</text>
+        <circle cx="26" cy="68" r="4" fill="#34d399"/>
+        <line x1="44" y1="54" x2="52" y2="54" stroke="#374151" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <defs><marker id="arr2" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L6 3L0 6z" fill="#374151"/></marker></defs>
+        <rect x="52" y="32" width="36" height="44" rx="5" fill="#1f2937" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="70" y="49" text-anchor="middle" fill="#60a5fa" font-size="6" font-family="JetBrains Mono">BUILD</text>
+        <text x="70" y="59" text-anchor="middle" fill="#93c5fd" font-size="5" font-family="JetBrains Mono">docker</text>
+        <circle cx="70" cy="68" r="4" fill="#34d399"/>
+        <line x1="88" y1="54" x2="96" y2="54" stroke="#374151" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <rect x="96" y="32" width="36" height="44" rx="5" fill="#1f2937" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="114" y="49" text-anchor="middle" fill="#fbbf24" font-size="6" font-family="JetBrains Mono">TEST</text>
+        <text x="114" y="59" text-anchor="middle" fill="#fde68a" font-size="5" font-family="JetBrains Mono">pytest</text>
+        <circle cx="114" cy="68" r="4" fill="#34d399"/>
+        <line x1="132" y1="54" x2="140" y2="54" stroke="#374151" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <rect x="140" y="32" width="36" height="44" rx="5" fill="#1f2937" stroke="#34d399" stroke-width="1.5"/>
+        <text x="158" y="49" text-anchor="middle" fill="#34d399" font-size="6" font-family="JetBrains Mono">SCAN</text>
+        <text x="158" y="59" text-anchor="middle" fill="#6ee7b7" font-size="5" font-family="JetBrains Mono">trivy</text>
+        <circle cx="158" cy="68" r="4" fill="#34d399"/>
+        <line x1="176" y1="54" x2="184" y2="54" stroke="#374151" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <rect x="184" y="32" width="36" height="44" rx="5" fill="#1f2937" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="202" y="49" text-anchor="middle" fill="#a78bfa" font-size="6" font-family="JetBrains Mono">PUSH</text>
+        <text x="202" y="59" text-anchor="middle" fill="#c4b5fd" font-size="5" font-family="JetBrains Mono">ECR</text>
+        <circle cx="202" cy="68" r="4" fill="#34d399"/>
+        <line x1="220" y1="54" x2="228" y2="54" stroke="#374151" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <rect x="228" y="32" width="44" height="44" rx="5" fill="#14532d" stroke="#22c55e" stroke-width="1.5"/>
+        <text x="250" y="49" text-anchor="middle" fill="#22c55e" font-size="6" font-family="JetBrains Mono">DEPLOY</text>
+        <text x="250" y="59" text-anchor="middle" fill="#86efac" font-size="5" font-family="JetBrains Mono">ArgoCD</text>
+        <text x="250" y="69" text-anchor="middle" fill="#4ade80" font-size="7" font-family="JetBrains Mono">&#x2713;</text>
+        <!-- Log output -->
+        <rect x="8" y="86" width="264" height="64" rx="5" fill="#0a0e1a" stroke="#1e2d45" stroke-width="1"/>
+        <text x="14" y="99" fill="#34d399" font-size="6" font-family="JetBrains Mono">&#x25B8; Run pipeline #247 triggered by push to main</text>
+        <text x="14" y="110" fill="#6ee7b7" font-size="6" font-family="JetBrains Mono">&#x25B8; Build: SUCCESS (2m 14s) — image: sha256:4af2c...</text>
+        <text x="14" y="121" fill="#6ee7b7" font-size="6" font-family="JetBrains Mono">&#x25B8; Trivy: 0 critical CVEs found</text>
+        <text x="14" y="132" fill="#6ee7b7" font-size="6" font-family="JetBrains Mono">&#x25B8; ArgoCD synced — rollout: 3/3 pods healthy</text>
+        <text x="14" y="143" fill="#22d3ee" font-size="6" font-family="JetBrains Mono">&#x25B8; Deployment complete &#x2713; — Duration: 4m 32s</text>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">CI/CD Pipeline — GitHub Actions</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">Jenkins &bull; ArgoCD &bull; GitOps deployment flow</div>
+    </div>
+
+    <!-- Observability / Grafana -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(26,111,255,.2)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#F46800"><path d="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z"/></svg>Grafana Observability
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#111217">
+        <rect width="280" height="160" fill="#111217"/>
+        <rect x="0" y="0" width="280" height="20" fill="#1a1d27"/>
+        <text x="10" y="13" fill="#F46800" font-size="8" font-family="JetBrains Mono" font-weight="bold">Grafana</text>
+        <text x="70" y="13" fill="#6b7280" font-size="7" font-family="JetBrains Mono">/ SRE Dashboard</text>
+        <!-- Metric cards -->
+        <rect x="8" y="26" width="58" height="30" rx="4" fill="#1f2128" stroke="#374151" stroke-width=".5"/>
+        <text x="37" y="37" text-anchor="middle" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">UPTIME SLO</text>
+        <text x="37" y="49" text-anchor="middle" fill="#34d399" font-size="11" font-family="JetBrains Mono" font-weight="bold">99.9%</text>
+        <rect x="72" y="26" width="58" height="30" rx="4" fill="#1f2128" stroke="#374151" stroke-width=".5"/>
+        <text x="101" y="37" text-anchor="middle" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">ERROR RATE</text>
+        <text x="101" y="49" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="JetBrains Mono" font-weight="bold">0.04%</text>
+        <rect x="136" y="26" width="58" height="30" rx="4" fill="#1f2128" stroke="#374151" stroke-width=".5"/>
+        <text x="165" y="37" text-anchor="middle" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">AVG LATENCY</text>
+        <text x="165" y="49" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="JetBrains Mono" font-weight="bold">42ms</text>
+        <rect x="200" y="26" width="72" height="30" rx="4" fill="#1f2128" stroke="#374151" stroke-width=".5"/>
+        <text x="236" y="37" text-anchor="middle" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">ALERTS FIRING</text>
+        <text x="236" y="49" text-anchor="middle" fill="#34d399" font-size="11" font-family="JetBrains Mono" font-weight="bold">0</text>
+        <!-- Line chart -->
+        <rect x="8" y="62" width="264" height="56" rx="4" fill="#0d1117" stroke="#1e2d45" stroke-width=".5"/>
+        <text x="14" y="72" fill="#6b7280" font-size="6" font-family="JetBrains Mono">Request Rate (req/s) — last 1h</text>
+        <!-- Chart lines -->
+        <polyline points="14,108 34,98 54,102 74,88 94,95 114,82 134,90 154,78 174,85 174,85 194,72 214,80 234,68 254,74 268,70" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+        <polyline points="14,112 34,106 54,110 74,100 94,108 114,96 134,104 154,92 174,100 194,88 214,96 234,84 254,90 268,86" fill="none" stroke="#34d399" stroke-width="1.2" stroke-dasharray="4,2"/>
+        <!-- Area fill -->
+        <polyline points="14,118 14,108 34,98 54,102 74,88 94,95 114,82 134,90 154,78 174,85 194,72 214,80 234,68 254,74 268,70 268,118" fill="rgba(59,130,246,.1)" stroke="none"/>
+        <!-- Axis -->
+        <line x1="14" y1="118" x2="268" y2="118" stroke="#374151" stroke-width=".5"/>
+        <!-- Threshold line -->
+        <line x1="14" y1="80" x2="268" y2="80" stroke="#ef4444" stroke-width=".8" stroke-dasharray="5,3"/>
+        <text x="250" y="78" fill="#ef4444" font-size="5.5" font-family="JetBrains Mono">SLO</text>
+        <!-- Status row -->
+        <rect x="8" y="124" width="264" height="28" rx="4" fill="#0a0e1a"/>
+        <circle cx="18" cy="138" r="4" fill="#34d399"/><text x="26" y="141" fill="#6ee7b7" font-size="6" font-family="JetBrains Mono">Prometheus</text>
+        <circle cx="90" cy="138" r="4" fill="#F46800"/><text x="98" y="141" fill="#fdba74" font-size="6" font-family="JetBrains Mono">Grafana</text>
+        <circle cx="148" cy="138" r="4" fill="#005571"/><text x="156" y="141" fill="#67e8f9" font-size="6" font-family="JetBrains Mono">Elasticsearch</text>
+        <circle cx="220" cy="138" r="4" fill="#632CA6"/><text x="228" y="141" fill="#c084fc" font-size="6" font-family="JetBrains Mono">Datadog</text>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">Grafana Observability Dashboard</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">Prometheus &bull; ELK &bull; Datadog &bull; SLO tracking</div>
+    </div>
+
+    <!-- Agentic AI Architecture -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(124,58,237,.25)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#7c3aed"><path d="M12 2a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0 014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>Agentic AI Architecture
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#0e0a1e">
+        <defs><radialGradient id="ag" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a0a3a"/><stop offset="100%" stop-color="#080412"/></radialGradient></defs>
+        <rect width="280" height="160" fill="url(#ag)"/>
+        <!-- Grid -->
+        <line x1="0" y1="53" x2="280" y2="53" stroke="rgba(124,58,237,.1)" stroke-width=".5"/>
+        <line x1="0" y1="106" x2="280" y2="106" stroke="rgba(124,58,237,.1)" stroke-width=".5"/>
+        <!-- Central AI Brain -->
+        <circle cx="140" cy="80" r="26" fill="rgba(124,58,237,.15)" stroke="#7c3aed" stroke-width="1.5"/>
+        <circle cx="140" cy="80" r="18" fill="rgba(124,58,237,.25)" stroke="#a78bfa" stroke-width="1"/>
+        <text x="140" y="77" text-anchor="middle" fill="#c4b5fd" font-size="7" font-family="JetBrains Mono" font-weight="bold">LLM</text>
+        <text x="140" y="87" text-anchor="middle" fill="#a78bfa" font-size="5.5" font-family="JetBrains Mono">Agent</text>
+        <!-- Surrounding nodes -->
+        <!-- Git trigger -->
+        <rect x="6" y="10" width="52" height="22" rx="5" fill="#1a1a2e" stroke="#EF7B4D" stroke-width="1"/>
+        <text x="32" y="20" text-anchor="middle" fill="#fb923c" font-size="5.5" font-family="JetBrains Mono">Git Trigger</text>
+        <text x="32" y="28" text-anchor="middle" fill="#fed7aa" font-size="5" font-family="JetBrains Mono">PR / Push</text>
+        <line x1="58" y1="21" x2="115" y2="68" stroke="#EF7B4D" stroke-width=".8" stroke-dasharray="3,2"/>
+        <!-- Terraform -->
+        <rect x="6" y="68" width="52" height="22" rx="5" fill="#1a1a2e" stroke="#7b42bc" stroke-width="1"/>
+        <text x="32" y="78" text-anchor="middle" fill="#c084fc" font-size="5.5" font-family="JetBrains Mono">IaC Review</text>
+        <text x="32" y="86" text-anchor="middle" fill="#e9d5ff" font-size="5" font-family="JetBrains Mono">Terraform</text>
+        <line x1="58" y1="79" x2="114" y2="80" stroke="#7b42bc" stroke-width=".8" stroke-dasharray="3,2"/>
+        <!-- Slack Output -->
+        <rect x="6" y="126" width="52" height="22" rx="5" fill="#1a1a2e" stroke="#22d3ee" stroke-width="1"/>
+        <text x="32" y="136" text-anchor="middle" fill="#22d3ee" font-size="5.5" font-family="JetBrains Mono">Slack Alert</text>
+        <text x="32" y="144" text-anchor="middle" fill="#a5f3fc" font-size="5" font-family="JetBrains Mono">Runbook</text>
+        <line x1="58" y1="137" x2="115" y2="94" stroke="#22d3ee" stroke-width=".8" stroke-dasharray="3,2"/>
+        <!-- CloudWatch -->
+        <rect x="222" y="10" width="52" height="22" rx="5" fill="#1a1a2e" stroke="#ff9900" stroke-width="1"/>
+        <text x="248" y="20" text-anchor="middle" fill="#fbbf24" font-size="5.5" font-family="JetBrains Mono">CloudWatch</text>
+        <text x="248" y="28" text-anchor="middle" fill="#fde68a" font-size="5" font-family="JetBrains Mono">Alerts</text>
+        <line x1="222" y1="21" x2="165" y2="68" stroke="#ff9900" stroke-width=".8" stroke-dasharray="3,2"/>
+        <!-- IAM Policy -->
+        <rect x="222" y="68" width="52" height="22" rx="5" fill="#1a1a2e" stroke="#34d399" stroke-width="1"/>
+        <text x="248" y="78" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">IAM Policy</text>
+        <text x="248" y="86" text-anchor="middle" fill="#6ee7b7" font-size="5" font-family="JetBrains Mono">Validator</text>
+        <line x1="222" y1="79" x2="166" y2="80" stroke="#34d399" stroke-width=".8" stroke-dasharray="3,2"/>
+        <!-- RCA Generator -->
+        <rect x="222" y="126" width="52" height="22" rx="5" fill="#1a1a2e" stroke="#f472b6" stroke-width="1"/>
+        <text x="248" y="136" text-anchor="middle" fill="#f472b6" font-size="5.5" font-family="JetBrains Mono">RCA Draft</text>
+        <text x="248" y="144" text-anchor="middle" fill="#fbcfe8" font-size="5" font-family="JetBrains Mono">Auto-Gen</text>
+        <line x1="222" y1="137" x2="165" y2="94" stroke="#f472b6" stroke-width=".8" stroke-dasharray="3,2"/>
+        <!-- Pulse rings -->
+        <circle cx="140" cy="80" r="32" fill="none" stroke="rgba(124,58,237,.15)" stroke-width="1"><animate attributeName="r" values="26;40;26" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;0;.3" dur="3s" repeatCount="indefinite"/></circle>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">Agentic AI DevOps Architecture</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">Claude &bull; GPT-4o &bull; LangChain &bull; Auto-triage</div>
+    </div>
+
+    <!-- OpenShift / Cloud Infra -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(26,111,255,.2)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#EE0000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Multi-Cloud Infrastructure
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#080e1e">
+        <rect width="280" height="160" fill="#f0f4ff"/>
+        <!-- AWS Region -->
+        <rect x="8" y="8" width="80" height="90" rx="8" fill="rgba(255,153,0,.06)" stroke="rgba(255,153,0,.4)" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="48" y="22" text-anchor="middle" fill="#ffa733" font-size="7" font-family="JetBrains Mono" font-weight="bold">AWS us-east-1</text>
+        <rect x="15" y="28" width="66" height="20" rx="4" fill="rgba(255,153,0,.12)" stroke="rgba(255,153,0,.3)" stroke-width="1"/>
+        <text x="48" y="42" text-anchor="middle" fill="#fcd34d" font-size="6" font-family="JetBrains Mono">EKS Cluster</text>
+        <rect x="15" y="53" width="30" height="16" rx="3" fill="rgba(255,153,0,.1)"/>
+        <text x="30" y="64" text-anchor="middle" fill="#fbbf24" font-size="5.5" font-family="JetBrains Mono">RDS</text>
+        <rect x="51" y="53" width="30" height="16" rx="3" fill="rgba(255,153,0,.1)"/>
+        <text x="66" y="64" text-anchor="middle" fill="#fbbf24" font-size="5.5" font-family="JetBrains Mono">S3</text>
+        <rect x="15" y="74" width="66" height="16" rx="3" fill="rgba(255,153,0,.1)"/>
+        <text x="48" y="85" text-anchor="middle" fill="#fbbf24" font-size="5.5" font-family="JetBrains Mono">Lambda + ALB</text>
+        <!-- Azure Region -->
+        <rect x="100" y="8" width="80" height="90" rx="8" fill="rgba(0,120,212,.06)" stroke="rgba(0,120,212,.35)" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="140" y="22" text-anchor="middle" fill="#60a5fa" font-size="7" font-family="JetBrains Mono" font-weight="bold">Azure East US</text>
+        <rect x="107" y="28" width="66" height="20" rx="4" fill="rgba(0,120,212,.1)" stroke="rgba(0,120,212,.3)" stroke-width="1"/>
+        <text x="140" y="42" text-anchor="middle" fill="#93c5fd" font-size="6" font-family="JetBrains Mono">AKS Cluster</text>
+        <rect x="107" y="53" width="30" height="16" rx="3" fill="rgba(0,120,212,.08)"/>
+        <text x="122" y="64" text-anchor="middle" fill="#60a5fa" font-size="5.5" font-family="JetBrains Mono">APIM</text>
+        <rect x="143" y="53" width="30" height="16" rx="3" fill="rgba(0,120,212,.08)"/>
+        <text x="158" y="64" text-anchor="middle" fill="#60a5fa" font-size="5.5" font-family="JetBrains Mono">Blob</text>
+        <rect x="107" y="74" width="66" height="16" rx="3" fill="rgba(0,120,212,.08)"/>
+        <text x="140" y="85" text-anchor="middle" fill="#60a5fa" font-size="5.5" font-family="JetBrains Mono">App Service + AD</text>
+        <!-- GCP Region -->
+        <rect x="192" y="8" width="80" height="90" rx="8" fill="rgba(66,133,244,.06)" stroke="rgba(66,133,244,.35)" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="232" y="22" text-anchor="middle" fill="#818cf8" font-size="7" font-family="JetBrains Mono" font-weight="bold">GCP us-central</text>
+        <rect x="199" y="28" width="66" height="20" rx="4" fill="rgba(66,133,244,.1)" stroke="rgba(66,133,244,.3)" stroke-width="1"/>
+        <text x="232" y="42" text-anchor="middle" fill="#a5b4fc" font-size="6" font-family="JetBrains Mono">GKE Cluster</text>
+        <rect x="199" y="53" width="30" height="16" rx="3" fill="rgba(66,133,244,.08)"/>
+        <text x="214" y="64" text-anchor="middle" fill="#bfdbfe" font-size="5.5" font-family="JetBrains Mono">GCS</text>
+        <rect x="235" y="53" width="30" height="16" rx="3" fill="rgba(66,133,244,.08)"/>
+        <text x="250" y="64" text-anchor="middle" fill="#bfdbfe" font-size="5.5" font-family="JetBrains Mono">BQ</text>
+        <rect x="199" y="74" width="66" height="16" rx="3" fill="rgba(66,133,244,.08)"/>
+        <text x="232" y="85" text-anchor="middle" fill="#bfdbfe" font-size="5.5" font-family="JetBrains Mono">Cloud Run + IAM</text>
+        <!-- Terraform bottom bar -->
+        <rect x="8" y="108" width="264" height="28" rx="6" fill="rgba(123,66,188,.15)" stroke="rgba(123,66,188,.3)" stroke-width="1"/>
+        <text x="20" y="120" fill="#6d28d9" font-size="7" font-family="JetBrains Mono" font-weight="bold">Terraform</text>
+        <text x="75" y="120" fill="#7c3aed" font-size="6" font-family="JetBrains Mono">IaC — manages all 3 clouds from single codebase</text>
+        <text x="20" y="130" fill="#8b5cf6" font-size="5.5" font-family="JetBrains Mono">&#x25B8; Plan  &#x25B8; Apply  &#x25B8; State Lock  &#x25B8; OPA Policy Gates  &#x25B8; Module Registry</text>
+        <!-- Connecting lines between clouds -->
+        <line x1="88" y1="53" x2="100" y2="53" stroke="rgba(100,100,200,.3)" stroke-width=".8" stroke-dasharray="3,2"/>
+        <line x1="180" y1="53" x2="192" y2="53" stroke="rgba(100,100,200,.3)" stroke-width=".8" stroke-dasharray="3,2"/>
+        <!-- VPN arrows -->
+        <path d="M88 60 Q94 60 94 53 Q94 46 100 46" fill="none" stroke="rgba(100,100,200,.25)" stroke-width=".8"/>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">Multi-Cloud Infrastructure — AWS / Azure / GCP</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">Terraform &bull; OPA policies &bull; Unified IaC</div>
+    </div>
+
+    <!-- Dynatrace / APM -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(26,111,255,.2)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#632CA6"><circle cx="12" cy="12" r="9"/></svg>APM &amp; Dynatrace
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#1a0533">
+        <rect width="280" height="160" fill="#1a0533"/>
+        <!-- Header -->
+        <rect x="0" y="0" width="280" height="22" fill="#220040"/>
+        <text x="10" y="14" fill="#b388ff" font-size="8" font-family="JetBrains Mono" font-weight="bold">Dynatrace APM</text>
+        <text x="160" y="14" fill="#7e57c2" font-size="6" font-family="JetBrains Mono">Davis AI &#x2022; SmartScape</text>
+        <!-- Service map nodes -->
+        <circle cx="60" cy="72" r="18" fill="rgba(99,44,166,.3)" stroke="#9c27b0" stroke-width="1.5"/>
+        <text x="60" y="70" text-anchor="middle" fill="#e1bee7" font-size="5.5" font-family="JetBrains Mono">API</text>
+        <text x="60" y="79" text-anchor="middle" fill="#ce93d8" font-size="5" font-family="JetBrains Mono">Gateway</text>
+        <circle cx="140" cy="55" r="18" fill="rgba(33,150,243,.2)" stroke="#42a5f5" stroke-width="1.5"/>
+        <text x="140" y="53" text-anchor="middle" fill="#bbdefb" font-size="5.5" font-family="JetBrains Mono">Order</text>
+        <text x="140" y="62" text-anchor="middle" fill="#90caf9" font-size="5" font-family="JetBrains Mono">Service</text>
+        <circle cx="140" cy="100" r="18" fill="rgba(76,175,80,.2)" stroke="#66bb6a" stroke-width="1.5"/>
+        <text x="140" y="98" text-anchor="middle" fill="#c8e6c9" font-size="5.5" font-family="JetBrains Mono">User</text>
+        <text x="140" y="107" text-anchor="middle" fill="#a5d6a7" font-size="5" font-family="JetBrains Mono">Service</text>
+        <circle cx="220" cy="72" r="18" fill="rgba(255,87,34,.2)" stroke="#ff7043" stroke-width="1.5"/>
+        <text x="220" y="70" text-anchor="middle" fill="#ffccbc" font-size="5.5" font-family="JetBrains Mono">RDS</text>
+        <text x="220" y="79" text-anchor="middle" fill="#ffab91" font-size="5" font-family="JetBrains Mono">Postgres</text>
+        <!-- Connecting arrows -->
+        <line x1="78" y1="65" x2="122" y2="60" stroke="rgba(179,136,255,.4)" stroke-width="1"/>
+        <line x1="78" y1="79" x2="122" y2="95" stroke="rgba(179,136,255,.4)" stroke-width="1"/>
+        <line x1="158" y1="58" x2="202" y2="68" stroke="rgba(179,136,255,.4)" stroke-width="1"/>
+        <line x1="158" y1="97" x2="202" y2="78" stroke="rgba(179,136,255,.4)" stroke-width="1"/>
+        <!-- Latency labels -->
+        <text x="94" y="57" fill="#b39ddb" font-size="5" font-family="JetBrains Mono">12ms</text>
+        <text x="94" y="91" fill="#b39ddb" font-size="5" font-family="JetBrains Mono">8ms</text>
+        <text x="175" y="56" fill="#b39ddb" font-size="5" font-family="JetBrains Mono">41ms</text>
+        <!-- Anomaly indicator -->
+        <rect x="175" y="52" width="6" height="6" rx="1" fill="#ff5252"/>
+        <!-- Bottom metrics -->
+        <rect x="8" y="128" width="264" height="24" rx="4" fill="rgba(0,0,0,.4)"/>
+        <text x="14" y="139" fill="#ce93d8" font-size="6" font-family="JetBrains Mono">Apdex: 0.96</text>
+        <text x="74" y="139" fill="#90caf9" font-size="6" font-family="JetBrains Mono">Throughput: 2.4k rpm</text>
+        <text x="178" y="139" fill="#a5d6a7" font-size="6" font-family="JetBrains Mono">Errors: 0.02%</text>
+        <text x="14" y="148" fill="#7e57c2" font-size="5.5" font-family="JetBrains Mono">&#x25B8; Davis AI: No anomalies detected &#x2022; All services healthy</text>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">Dynatrace APM — Davis AI Monitoring</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">SmartScape &bull; Service maps &bull; AI anomaly detection</div>
+    </div>
+
+    <!-- HashiCorp Vault / Security Dashboard -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(0,200,150,.25)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#c8a500"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>HashiCorp Vault &amp; Security
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#05120e">
+        <rect width="280" height="160" fill="#05120e"/>
+        <rect x="0" y="0" width="280" height="20" fill="#071a10"/>
+        <text x="10" y="13" fill="#34d399" font-size="8" font-family="JetBrains Mono" font-weight="bold">Vault</text>
+        <text x="45" y="13" fill="#6b7280" font-size="7" font-family="JetBrains Mono">/ Security Dashboard</text>
+        <text x="210" y="13" fill="#34d399" font-size="6" font-family="JetBrains Mono">&#x25CF; Unsealed</text>
+        <!-- Vault status cards -->
+        <rect x="8" y="26" width="58" height="30" rx="4" fill="#0a2018" stroke="#065f46" stroke-width="1"/>
+        <text x="37" y="36" text-anchor="middle" fill="#6b7280" font-size="5.5" font-family="JetBrains Mono">STATUS</text>
+        <text x="37" y="49" text-anchor="middle" fill="#34d399" font-size="9" font-family="JetBrains Mono" font-weight="bold">Active</text>
+        <rect x="72" y="26" width="58" height="30" rx="4" fill="#0a2018" stroke="#065f46" stroke-width="1"/>
+        <text x="101" y="36" text-anchor="middle" fill="#6b7280" font-size="5.5" font-family="JetBrains Mono">SECRETS</text>
+        <text x="101" y="49" text-anchor="middle" fill="#34d399" font-size="11" font-family="JetBrains Mono" font-weight="bold">2,847</text>
+        <rect x="136" y="26" width="58" height="30" rx="4" fill="#0a2018" stroke="#065f46" stroke-width="1"/>
+        <text x="165" y="36" text-anchor="middle" fill="#6b7280" font-size="5.5" font-family="JetBrains Mono">POLICIES</text>
+        <text x="165" y="49" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="JetBrains Mono" font-weight="bold">142</text>
+        <rect x="200" y="26" width="72" height="30" rx="4" fill="#0a2018" stroke="#065f46" stroke-width="1"/>
+        <text x="236" y="36" text-anchor="middle" fill="#6b7280" font-size="5.5" font-family="JetBrains Mono">AUTH LEASES</text>
+        <text x="236" y="49" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="JetBrains Mono" font-weight="bold">389</text>
+        <!-- Secret engines grid -->
+        <text x="10" y="68" fill="#4b5563" font-size="5.5" font-family="JetBrains Mono">SECRET ENGINES</text>
+        <rect x="8" y="72" width="36" height="24" rx="4" fill="#0d2b1a" stroke="#065f46" stroke-width="1"/>
+        <text x="26" y="82" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">KV v2</text>
+        <text x="26" y="90" text-anchor="middle" fill="#6ee7b7" font-size="5" font-family="JetBrains Mono">enabled</text>
+        <rect x="50" y="72" width="36" height="24" rx="4" fill="#0d2b1a" stroke="#065f46" stroke-width="1"/>
+        <text x="68" y="82" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">AWS</text>
+        <text x="68" y="90" text-anchor="middle" fill="#6ee7b7" font-size="5" font-family="JetBrains Mono">dynamic</text>
+        <rect x="92" y="72" width="36" height="24" rx="4" fill="#0d2b1a" stroke="#065f46" stroke-width="1"/>
+        <text x="110" y="82" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">PKI</text>
+        <text x="110" y="90" text-anchor="middle" fill="#6ee7b7" font-size="5" font-family="JetBrains Mono">certs</text>
+        <rect x="134" y="72" width="36" height="24" rx="4" fill="#0d2b1a" stroke="#065f46" stroke-width="1"/>
+        <text x="152" y="82" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">DB</text>
+        <text x="152" y="90" text-anchor="middle" fill="#6ee7b7" font-size="5" font-family="JetBrains Mono">postgres</text>
+        <rect x="176" y="72" width="48" height="24" rx="4" fill="#0d2b1a" stroke="#065f46" stroke-width="1"/>
+        <text x="200" y="82" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">Transit</text>
+        <text x="200" y="90" text-anchor="middle" fill="#6ee7b7" font-size="5" font-family="JetBrains Mono">encrypt</text>
+        <rect x="230" y="72" width="42" height="24" rx="4" fill="#0d2b1a" stroke="#065f46" stroke-width="1"/>
+        <text x="251" y="82" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">k8s</text>
+        <text x="251" y="90" text-anchor="middle" fill="#6ee7b7" font-size="5" font-family="JetBrains Mono">auth</text>
+        <!-- Audit log -->
+        <rect x="8" y="102" width="264" height="50" rx="5" fill="#030c07" stroke="#065f46" stroke-width=".5"/>
+        <text x="14" y="113" fill="#4b5563" font-size="5.5" font-family="JetBrains Mono">AUDIT LOG</text>
+        <text x="14" y="123" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">&#x25B8; [09:14:02] auth/kubernetes login OK — pod: api-svc-7f4b</text>
+        <text x="14" y="132" fill="#6ee7b7" font-size="5.5" font-family="JetBrains Mono">&#x25B8; [09:13:58] secret/data/db/prod READ — svc: order-service</text>
+        <text x="14" y="141" fill="#fbbf24" font-size="5.5" font-family="JetBrains Mono">&#x25B8; [09:13:44] pki/issue CERT issued — ttl: 24h — app: frontend</text>
+        <text x="14" y="150" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">&#x25B8; [09:13:21] aws/creds LEASE created — IAM role: svc-read-only</text>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">HashiCorp Vault — Secrets Management</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">KV &bull; PKI &bull; Dynamic creds &bull; k8s auth &bull; Audit logs</div>
+    </div>
+
+    <!-- ArgoCD GitOps Dashboard -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(239,123,77,.25)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#EF7B4D"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>ArgoCD GitOps
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#0a0d12">
+        <rect width="280" height="160" fill="#0a0d12"/>
+        <rect x="0" y="0" width="280" height="20" fill="#111520"/>
+        <text x="10" y="13" fill="#EF7B4D" font-size="8" font-family="JetBrains Mono" font-weight="bold">ArgoCD</text>
+        <text x="58" y="13" fill="#6b7280" font-size="7" font-family="JetBrains Mono">/ Applications</text>
+        <text x="195" y="13" fill="#34d399" font-size="6" font-family="JetBrains Mono">8 Synced  &#x25CF;  0 Degraded</text>
+        <!-- App rows -->
+        <!-- Header -->
+        <text x="10" y="32" fill="#374151" font-size="5.5" font-family="JetBrains Mono">APPLICATION</text>
+        <text x="120" y="32" fill="#374151" font-size="5.5" font-family="JetBrains Mono">HEALTH</text>
+        <text x="160" y="32" fill="#374151" font-size="5.5" font-family="JetBrains Mono">SYNC</text>
+        <text x="208" y="32" fill="#374151" font-size="5.5" font-family="JetBrains Mono">REVISION</text>
+        <line x1="8" y1="34" x2="272" y2="34" stroke="#1f2937" stroke-width=".5"/>
+        <!-- Row 1 -->
+        <rect x="8" y="36" width="264" height="14" rx="2" fill="rgba(52,211,153,.04)"/>
+        <text x="12" y="46" fill="#e2e8f8" font-size="6" font-family="JetBrains Mono">api-gateway</text>
+        <circle cx="125" cy="43" r="4" fill="#34d399"/><text x="132" y="46" fill="#6ee7b7" font-size="5.5" font-family="JetBrains Mono">Healthy</text>
+        <rect x="158" y="38" width="32" height="10" rx="3" fill="rgba(52,211,153,.15)"/><text x="174" y="46" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">Synced</text>
+        <text x="210" y="46" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">a3f2c19</text>
+        <!-- Row 2 -->
+        <rect x="8" y="52" width="264" height="14" rx="2" fill="rgba(0,0,0,0)"/>
+        <text x="12" y="62" fill="#e2e8f8" font-size="6" font-family="JetBrains Mono">order-service</text>
+        <circle cx="125" cy="59" r="4" fill="#34d399"/><text x="132" y="62" fill="#6ee7b7" font-size="5.5" font-family="JetBrains Mono">Healthy</text>
+        <rect x="158" y="54" width="32" height="10" rx="3" fill="rgba(52,211,153,.15)"/><text x="174" y="62" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">Synced</text>
+        <text x="210" y="62" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">bc71e44</text>
+        <!-- Row 3 -->
+        <rect x="8" y="68" width="264" height="14" rx="2" fill="rgba(52,211,153,.04)"/>
+        <text x="12" y="78" fill="#e2e8f8" font-size="6" font-family="JetBrains Mono">payment-svc</text>
+        <circle cx="125" cy="75" r="4" fill="#34d399"/><text x="132" y="78" fill="#6ee7b7" font-size="5.5" font-family="JetBrains Mono">Healthy</text>
+        <rect x="158" y="70" width="32" height="10" rx="3" fill="rgba(52,211,153,.15)"/><text x="174" y="78" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">Synced</text>
+        <text x="210" y="78" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">f92a001</text>
+        <!-- Row 4 -->
+        <rect x="8" y="84" width="264" height="14" rx="2" fill="rgba(0,0,0,0)"/>
+        <text x="12" y="94" fill="#e2e8f8" font-size="6" font-family="JetBrains Mono">auth-service</text>
+        <circle cx="125" cy="91" r="4" fill="#fbbf24"/><text x="132" y="94" fill="#fde68a" font-size="5.5" font-family="JetBrains Mono">Progressing</text>
+        <rect x="158" y="86" width="42" height="10" rx="3" fill="rgba(251,191,36,.12)"/><text x="179" y="94" text-anchor="middle" fill="#fbbf24" font-size="5.5" font-family="JetBrains Mono">OutOfSync</text>
+        <text x="210" y="94" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">d14f822</text>
+        <!-- Row 5 -->
+        <rect x="8" y="100" width="264" height="14" rx="2" fill="rgba(52,211,153,.04)"/>
+        <text x="12" y="110" fill="#e2e8f8" font-size="6" font-family="JetBrains Mono">notification-svc</text>
+        <circle cx="125" cy="107" r="4" fill="#34d399"/><text x="132" y="110" fill="#6ee7b7" font-size="5.5" font-family="JetBrains Mono">Healthy</text>
+        <rect x="158" y="102" width="32" height="10" rx="3" fill="rgba(52,211,153,.15)"/><text x="174" y="110" text-anchor="middle" fill="#34d399" font-size="5.5" font-family="JetBrains Mono">Synced</text>
+        <text x="210" y="110" fill="#9ca3af" font-size="5.5" font-family="JetBrains Mono">e01b3c9</text>
+        <line x1="8" y1="116" x2="272" y2="116" stroke="#1f2937" stroke-width=".5"/>
+        <!-- Rollout history -->
+        <rect x="8" y="120" width="264" height="32" rx="5" fill="#060b10" stroke="#1f2937" stroke-width=".5"/>
+        <text x="14" y="130" fill="#4b5563" font-size="5.5" font-family="JetBrains Mono">ROLLOUT HISTORY — Last 5 deploys</text>
+        <rect x="14" y="133" width="30" height="8" rx="2" fill="rgba(52,211,153,.2)"/><text x="29" y="140" text-anchor="middle" fill="#34d399" font-size="5" font-family="JetBrains Mono">v2.4.1 &#x2713;</text>
+        <rect x="50" y="133" width="30" height="8" rx="2" fill="rgba(52,211,153,.2)"/><text x="65" y="140" text-anchor="middle" fill="#34d399" font-size="5" font-family="JetBrains Mono">v2.4.0 &#x2713;</text>
+        <rect x="86" y="133" width="30" height="8" rx="2" fill="rgba(52,211,153,.2)"/><text x="101" y="140" text-anchor="middle" fill="#34d399" font-size="5" font-family="JetBrains Mono">v2.3.9 &#x2713;</text>
+        <rect x="122" y="133" width="30" height="8" rx="2" fill="rgba(239,68,68,.15)"/><text x="137" y="140" text-anchor="middle" fill="#f87171" font-size="5" font-family="JetBrains Mono">v2.3.8 &#x21BA;</text>
+        <rect x="158" y="133" width="30" height="8" rx="2" fill="rgba(52,211,153,.2)"/><text x="173" y="140" text-anchor="middle" fill="#34d399" font-size="5" font-family="JetBrains Mono">v2.3.7 &#x2713;</text>
+        <text x="200" y="140" fill="#374151" font-size="5" font-family="JetBrains Mono">&#x21BA; = auto-rollback</text>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">ArgoCD GitOps — Application Delivery</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">GitOps &bull; Declarative &bull; Auto-rollback &bull; Drift detect</div>
+    </div>
+
+    <!-- AWS CloudWatch + Infra Dashboard -->
+    <div style="padding:1.4rem;transition:transform .2s,box-shadow .2s;cursor:default;background:rgba(10,18,38,.85);border:1px solid rgba(99,136,255,.18);border-radius:16px;backdrop-filter:blur(12px)" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 12px 40px rgba(255,153,0,.22)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="#ff9900"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>AWS CloudWatch SRE
+      </div>
+      <svg viewBox="0 0 280 160" width="100%" style="border-radius:10px;background:#0a0a0f">
+        <rect width="280" height="160" fill="#0a0a0f"/>
+        <rect x="0" y="0" width="280" height="20" fill="#12100a"/>
+        <text x="10" y="13" fill="#ff9900" font-size="8" font-family="JetBrains Mono" font-weight="bold">CloudWatch</text>
+        <text x="88" y="13" fill="#6b7280" font-size="7" font-family="JetBrains Mono">/ Production SRE</text>
+        <text x="210" y="13" fill="#34d399" font-size="6" font-family="JetBrains Mono">us-east-1</text>
+        <!-- Top KPI bar -->
+        <rect x="8" y="25" width="58" height="28" rx="4" fill="#110f06" stroke="rgba(255,153,0,.3)" stroke-width="1"/>
+        <text x="37" y="34" text-anchor="middle" fill="#6b7280" font-size="5" font-family="JetBrains Mono">EC2 INSTANCES</text>
+        <text x="37" y="46" text-anchor="middle" fill="#ff9900" font-size="11" font-family="JetBrains Mono" font-weight="bold">24</text>
+        <rect x="72" y="25" width="58" height="28" rx="4" fill="#110f06" stroke="rgba(255,153,0,.3)" stroke-width="1"/>
+        <text x="101" y="34" text-anchor="middle" fill="#6b7280" font-size="5" font-family="JetBrains Mono">RDS CLUSTERS</text>
+        <text x="101" y="46" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="JetBrains Mono" font-weight="bold">6</text>
+        <rect x="136" y="25" width="58" height="28" rx="4" fill="#110f06" stroke="rgba(52,211,153,.25)" stroke-width="1"/>
+        <text x="165" y="34" text-anchor="middle" fill="#6b7280" font-size="5" font-family="JetBrains Mono">LAMBDA INVOKE</text>
+        <text x="165" y="46" text-anchor="middle" fill="#34d399" font-size="9" font-family="JetBrains Mono" font-weight="bold">142k/h</text>
+        <rect x="200" y="25" width="72" height="28" rx="4" fill="#110f06" stroke="rgba(96,165,250,.25)" stroke-width="1"/>
+        <text x="236" y="34" text-anchor="middle" fill="#6b7280" font-size="5" font-family="JetBrains Mono">ALB REQUESTS</text>
+        <text x="236" y="46" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="JetBrains Mono" font-weight="bold">3.2M/h</text>
+        <!-- CPU + Memory chart area -->
+        <rect x="8" y="59" width="130" height="56" rx="4" fill="#08080e" stroke="#1f2937" stroke-width=".5"/>
+        <text x="14" y="68" fill="#374151" font-size="5.5" font-family="JetBrains Mono">EC2 CPU %</text>
+        <!-- CPU bars -->
+        <rect x="14" y="106" width="10" height="20" rx="1" fill="rgba(255,153,0,.2)" transform="rotate(180,19,96)"/>
+        <rect x="14" y="76" width="10" height="24" rx="1" fill="#ff9900" opacity=".7"/>
+        <rect x="28" y="76" width="10" height="18" rx="1" fill="#ff9900" opacity=".7"/>
+        <rect x="42" y="76" width="10" height="28" rx="1" fill="#ff9900" opacity=".8"/>
+        <rect x="56" y="76" width="10" height="15" rx="1" fill="#ff9900" opacity=".6"/>
+        <rect x="70" y="76" width="10" height="32" rx="1" fill="#fbbf24" opacity=".8"/>
+        <rect x="84" y="76" width="10" height="22" rx="1" fill="#ff9900" opacity=".7"/>
+        <rect x="98" y="76" width="10" height="19" rx="1" fill="#ff9900" opacity=".7"/>
+        <rect x="112" y="76" width="10" height="26" rx="1" fill="#ff9900" opacity=".75"/>
+        <line x1="14" y1="108" x2="130" y2="108" stroke="#1f2937" stroke-width=".5"/>
+        <!-- threshold line -->
+        <line x1="14" y1="84" x2="130" y2="84" stroke="rgba(239,68,68,.4)" stroke-width=".8" stroke-dasharray="4,2"/>
+        <text x="116" y="83" fill="#ef4444" font-size="4.5" font-family="JetBrains Mono">80%</text>
+        <!-- Network throughput chart -->
+        <rect x="144" y="59" width="128" height="56" rx="4" fill="#08080e" stroke="#1f2937" stroke-width=".5"/>
+        <text x="150" y="68" fill="#374151" font-size="5.5" font-family="JetBrains Mono">ALB Response Time</text>
+        <polyline points="150,108 162,96 174,100 186,88 198,104 210,86 222,92 234,80 246,88 258,82 264,78" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+        <polyline points="150,108 162,96 174,100 186,88 198,104 210,86 222,92 234,80 246,88 258,82 264,78 264,115 150,115" fill="rgba(96,165,250,.07)" stroke="none"/>
+        <line x1="150" y1="90" x2="264" y2="90" stroke="rgba(239,68,68,.35)" stroke-width=".7" stroke-dasharray="4,2"/>
+        <text x="250" y="89" fill="#ef4444" font-size="4.5" font-family="JetBrains Mono">SLO</text>
+        <line x1="150" y1="115" x2="264" y2="115" stroke="#1f2937" stroke-width=".5"/>
+        <!-- Alarm state bar -->
+        <rect x="8" y="122" width="264" height="30" rx="5" fill="#06090e" stroke="#1f2937" stroke-width=".5"/>
+        <text x="14" y="131" fill="#374151" font-size="5.5" font-family="JetBrains Mono">CLOUDWATCH ALARMS</text>
+        <rect x="14" y="134" width="56" height="10" rx="3" fill="rgba(52,211,153,.12)" stroke="rgba(52,211,153,.3)" stroke-width=".8"/>
+        <text x="42" y="142" text-anchor="middle" fill="#34d399" font-size="5" font-family="JetBrains Mono">OK: 47 alarms</text>
+        <rect x="76" y="134" width="56" height="10" rx="3" fill="rgba(251,191,36,.1)" stroke="rgba(251,191,36,.3)" stroke-width=".8"/>
+        <text x="104" y="142" text-anchor="middle" fill="#fbbf24" font-size="5" font-family="JetBrains Mono">WARN: 2 alarms</text>
+        <rect x="138" y="134" width="56" height="10" rx="3" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.3)" stroke-width=".8"/>
+        <text x="166" y="142" text-anchor="middle" fill="#f87171" font-size="5" font-family="JetBrains Mono">ALARM: 0</text>
+        <text x="202" y="142" fill="#374151" font-size="5" font-family="JetBrains Mono">Last refresh: 60s ago</text>
+      </svg>
+      <div style="margin-top:.7rem;font-size:.75rem;font-weight:600;color:var(--ink2)">AWS CloudWatch — SRE Production</div>
+      <div style="font-size:.68rem;color:var(--ink4);margin-top:.2rem">EC2 &bull; RDS &bull; Lambda &bull; ALB &bull; Alarm states</div>
+    </div>
+
+  </div>
+
+  <!-- 3 Cloud Experience Strip -->
+  <div style="margin-top:2.5rem">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.2em;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem"><span style="width:16px;height:2px;background:var(--blue);border-radius:1px;display:inline-block"></span>Cloud Platform Deep Dives</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem">
+
+      <!-- AWS Deep Dive -->
+      <div style="padding:1.5rem;background:rgba(255,153,0,.05);border:1.5px solid rgba(255,153,0,.25);border-radius:16px;transition:all .2s" onmouseenter="this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 32px rgba(255,153,0,.2)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem">
+          <div style="width:38px;height:38px;border-radius:10px;background:rgba(255,153,0,.15);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#ff9900" d="M6.76 10.04c0 .3.03.54.09.71.06.18.14.37.26.58l.06.18c0 .08-.05.16-.15.24l-.5.34-.21.07c-.08 0-.16-.04-.24-.11-.12-.1-.22-.23-.29-.38-.09-.17-.18-.33-.25-.47-.62.73-1.4 1.1-2.35 1.1-.67 0-1.2-.19-1.6-.57-.39-.38-.59-.9-.59-1.53 0-.68.24-1.23.73-1.64.49-.42 1.13-.62 1.96-.62.27 0 .55.02.85.06.3.04.6.1.92.18v-.58c0-.61-.13-1.03-.38-1.28C5.5 6.12 5.06 6 4.46 6c-.28 0-.57.03-.86.1-.3.07-.58.16-.86.27l-.21.09c-.11 0-.17-.08-.17-.25v-.39c0-.13.02-.22.06-.28a.6.6 0 01.22-.17c.28-.14.61-.26 1-.36A4.84 4.84 0 015.9 5.03c.95 0 1.64.22 2.09.65.44.43.66 1.08.66 1.96v2.59z M15.31 11.25c.26 0 .53-.05.82-.14.29-.1.54-.27.76-.51.13-.15.22-.32.27-.51.05-.19.08-.42.08-.69v-.34c-.24-.05-.49-.1-.74-.14-.25-.04-.5-.05-.75-.05-.54 0-.93.1-1.19.32-.26.22-.39.52-.39.92 0 .37.1.65.3.84.19.2.47.3.84.3z M9.85 11.99c-.4-.1-.71-.2-.92-.32-.13-.07-.22-.15-.25-.22a.56.56 0 01-.05-.23v-.41c0-.17.06-.25.18-.25l.14.02.2.08c.27.12.57.22.88.28.32.06.63.1.95.1.5 0 .89-.09 1.17-.26a.86.86 0 00.41-.76.78.78 0 00-.22-.56c-.14-.15-.41-.29-.81-.42l-1.16-.36c-.58-.18-1.01-.45-1.28-.81a1.9 1.9 0 01-.4-1.16c0-.33.07-.63.22-.89.14-.25.34-.48.58-.65.25-.18.53-.32.84-.41.32-.1.66-.14 1.01-.14.17 0 .36.01.54.03.18.02.35.06.52.09.16.04.31.08.45.13.14.05.26.1.34.14a.69.69 0 01.24.2.43.43 0 01.07.26v.38c0 .17-.06.26-.18.26a.83.83 0 01-.3-.1 3.65 3.65 0 00-1.53-.31c-.46 0-.82.07-1.06.22-.25.15-.37.38-.37.71 0 .22.08.42.24.57.16.15.45.3.88.44l1.13.36c.58.18.99.44 1.24.77.25.33.37.7.37 1.12 0 .34-.07.65-.21.93-.14.27-.34.51-.58.7-.25.2-.54.34-.89.45-.36.11-.74.17-1.16.17-.42 0-.83-.05-1.23-.14z"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#ff9900">Amazon Web Services</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:rgba(255,153,0,.6)">5+ years production experience</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1rem">
+          <div style="padding:.5rem .7rem;background:rgba(255,153,0,.06);border:1px solid rgba(255,153,0,.18);border-radius:8px;font-size:.7rem;color:rgba(255,153,0,.85);font-family:'JetBrains Mono',monospace">EKS &bull; ECS</div>
+          <div style="padding:.5rem .7rem;background:rgba(255,153,0,.06);border:1px solid rgba(255,153,0,.18);border-radius:8px;font-size:.7rem;color:rgba(255,153,0,.85);font-family:'JetBrains Mono',monospace">EC2 &bull; Lambda</div>
+          <div style="padding:.5rem .7rem;background:rgba(255,153,0,.06);border:1px solid rgba(255,153,0,.18);border-radius:8px;font-size:.7rem;color:rgba(255,153,0,.85);font-family:'JetBrains Mono',monospace">S3 &bull; RDS &bull; DynamoDB</div>
+          <div style="padding:.5rem .7rem;background:rgba(255,153,0,.06);border:1px solid rgba(255,153,0,.18);border-radius:8px;font-size:.7rem;color:rgba(255,153,0,.85);font-family:'JetBrains Mono',monospace">VPC &bull; IAM &bull; WAF</div>
+          <div style="padding:.5rem .7rem;background:rgba(255,153,0,.06);border:1px solid rgba(255,153,0,.18);border-radius:8px;font-size:.7rem;color:rgba(255,153,0,.85);font-family:'JetBrains Mono',monospace">CloudWatch &bull; X-Ray</div>
+          <div style="padding:.5rem .7rem;background:rgba(255,153,0,.06);border:1px solid rgba(255,153,0,.18);border-radius:8px;font-size:.7rem;color:rgba(255,153,0,.85);font-family:'JetBrains Mono',monospace">Route53 &bull; CloudFront</div>
+        </div>
+        <div style="padding:.6rem .8rem;background:rgba(255,153,0,.08);border-radius:8px;font-size:.72rem;color:rgba(255,153,0,.7);line-height:1.7">
+          &#x2713; AWS Certified Solutions Architect &mdash; Associate<br>
+          &#x2713; Multi-region DR &amp; cross-account architecture<br>
+          &#x2713; Cost optimization via Reserved + Spot instances
+        </div>
+      </div>
+
+      <!-- Azure Deep Dive -->
+      <div style="padding:1.5rem;background:rgba(0,120,212,.05);border:1.5px solid rgba(0,120,212,.25);border-radius:16px;transition:all .2s" onmouseenter="this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 32px rgba(0,120,212,.22)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem">
+          <div style="width:38px;height:38px;border-radius:10px;background:rgba(0,120,212,.15);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 96 96"><defs><linearGradient id="azd1" x1="42" y1="7" x2="11" y2="74" gradientUnits="userSpaceOnUse"><stop stop-color="#114A8B"/><stop offset="1" stop-color="#0669BC"/></linearGradient><linearGradient id="azd3" x1="33" y1="12" x2="57" y2="82" gradientUnits="userSpaceOnUse"><stop stop-color="#3CCBF4"/><stop offset="1" stop-color="#2892DF"/></linearGradient></defs><path d="M33.3 6.5h26L32.2 89.5a4.15 4.15 0 01-3.93 2.8H8.2a4.15 4.15 0 01-3.93-5.49L29.4 9.34A4.15 4.15 0 0133.3 6.5z" fill="url(#azd1)"/><path d="M62.6 6.5H33.6a4.15 4.15 0 013.9 2.84L62.8 86.8a4.15 4.15 0 01-3.93 5.49H87.9a4.15 4.15 0 003.93-5.49L66.6 9.34A4.15 4.15 0 0062.6 6.5z" fill="url(#azd3)"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#50a8ff">Microsoft Azure</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:rgba(80,168,255,.6)">4+ years production experience</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1rem">
+          <div style="padding:.5rem .7rem;background:rgba(0,120,212,.07);border:1px solid rgba(0,120,212,.22);border-radius:8px;font-size:.7rem;color:rgba(80,168,255,.9);font-family:'JetBrains Mono',monospace">AKS &bull; ACR</div>
+          <div style="padding:.5rem .7rem;background:rgba(0,120,212,.07);border:1px solid rgba(0,120,212,.22);border-radius:8px;font-size:.7rem;color:rgba(80,168,255,.9);font-family:'JetBrains Mono',monospace">Azure DevOps</div>
+          <div style="padding:.5rem .7rem;background:rgba(0,120,212,.07);border:1px solid rgba(0,120,212,.22);border-radius:8px;font-size:.7rem;color:rgba(80,168,255,.9);font-family:'JetBrains Mono',monospace">VM Scale Sets</div>
+          <div style="padding:.5rem .7rem;background:rgba(0,120,212,.07);border:1px solid rgba(0,120,212,.22);border-radius:8px;font-size:.7rem;color:rgba(80,168,255,.9);font-family:'JetBrains Mono',monospace">Azure AD &bull; RBAC</div>
+          <div style="padding:.5rem .7rem;background:rgba(0,120,212,.07);border:1px solid rgba(0,120,212,.22);border-radius:8px;font-size:.7rem;color:rgba(80,168,255,.9);font-family:'JetBrains Mono',monospace">App Services</div>
+          <div style="padding:.5rem .7rem;background:rgba(0,120,212,.07);border:1px solid rgba(0,120,212,.22);border-radius:8px;font-size:.7rem;color:rgba(80,168,255,.9);font-family:'JetBrains Mono',monospace">Blob &bull; Monitor</div>
+        </div>
+        <div style="padding:.6rem .8rem;background:rgba(0,120,212,.08);border-radius:8px;font-size:.72rem;color:rgba(80,168,255,.75);line-height:1.7">
+          &#x2713; YAML-based Azure DevOps pipelines at scale<br>
+          &#x2713; Active Directory SSO &amp; RBAC enterprise setup<br>
+          &#x2713; AKS cluster lifecycle &amp; node pool management
+        </div>
+      </div>
+
+      <!-- GCP Deep Dive -->
+      <div style="padding:1.5rem;background:rgba(66,133,244,.05);border:1.5px solid rgba(66,133,244,.22);border-radius:16px;transition:all .2s" onmouseenter="this.style.transform='translateY(-4px)';this.style.boxShadow='0 10px 32px rgba(66,133,244,.2)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+        <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem">
+          <div style="width:38px;height:38px;border-radius:10px;background:rgba(66,133,244,.15);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5.36L8.29 1.65C9.47 1.24 10.71 1 12 1v4.36z"/><path fill="#FBBC04" d="M5.36 12H1C1 9.07 2.01 6.37 3.75 4.27l3.04 3.04A6.97 6.97 0 005.36 12z"/><path fill="#34A853" d="M12 18.64V23c-2.93 0-5.63-1.01-7.73-2.75l3.04-3.04A4.98 4.98 0 0012 18.64z"/><path fill="#4285F4" d="M19 12a7 7 0 01-7 7v-4.36a2.64 2.64 0 000-5.28V5.36A7 7 0 0119 12z"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;background:linear-gradient(90deg,#EA4335,#FBBC04,#34A853,#4285F4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Google Cloud Platform</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:rgba(66,133,244,.6)">GKE &bull; Cloud-native tooling</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1rem">
+          <div style="padding:.5rem .7rem;background:rgba(66,133,244,.07);border:1px solid rgba(66,133,244,.2);border-radius:8px;font-size:.7rem;color:rgba(130,170,255,.9);font-family:'JetBrains Mono',monospace">GKE Clusters</div>
+          <div style="padding:.5rem .7rem;background:rgba(66,133,244,.07);border:1px solid rgba(66,133,244,.2);border-radius:8px;font-size:.7rem;color:rgba(130,170,255,.9);font-family:'JetBrains Mono',monospace">Cloud Run</div>
+          <div style="padding:.5rem .7rem;background:rgba(66,133,244,.07);border:1px solid rgba(66,133,244,.2);border-radius:8px;font-size:.7rem;color:rgba(130,170,255,.9);font-family:'JetBrains Mono',monospace">GCS &bull; BigQuery</div>
+          <div style="padding:.5rem .7rem;background:rgba(66,133,244,.07);border:1px solid rgba(66,133,244,.2);border-radius:8px;font-size:.7rem;color:rgba(130,170,255,.9);font-family:'JetBrains Mono',monospace">Cloud IAM &bull; VPC</div>
+          <div style="padding:.5rem .7rem;background:rgba(66,133,244,.07);border:1px solid rgba(66,133,244,.2);border-radius:8px;font-size:.7rem;color:rgba(130,170,255,.9);font-family:'JetBrains Mono',monospace">Artifact Registry</div>
+          <div style="padding:.5rem .7rem;background:rgba(66,133,244,.07);border:1px solid rgba(66,133,244,.2);border-radius:8px;font-size:.7rem;color:rgba(130,170,255,.9);font-family:'JetBrains Mono',monospace">Cloud Monitoring</div>
+        </div>
+        <div style="padding:.6rem .8rem;background:rgba(66,133,244,.08);border-radius:8px;font-size:.72rem;color:rgba(130,170,255,.75);line-height:1.7">
+          &#x2713; GKE autopilot &amp; standard cluster operations<br>
+          &#x2713; Cloud Build CI/CD &amp; Artifact Registry pipelines<br>
+          &#x2713; Workload Identity for secure pod authentication
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="wrap">
+  <div class="slbl">PROJECTS</div>
+  <h2 class="stitle">Real-World <span>Engineering Work</span></h2>
+  <div class="sline"></div>
+  <div class="pl">
+
+    <div class="pc2 card pf">
+      <div class="pt2">
+        <div class="pi2"><div class="pico2" style="background:#f5f3ff">&#x1F916;</div><div><div class="pname">AI Agent-Driven DevOps Automation Platform</div><div class="pmeta">UnitedHealth Insurance &middot; AZ &middot; 2025</div></div></div>
+        <span class="pbadge bai">&#x26A1; Agent AI</span>
+      </div>
+      <p class="pdesc">Multi-agent AI layer embedded in CI/CD and incident response. Claude + GPT-4o agents autonomously review Terraform plans, validate IAM policies, triage PagerDuty alerts, and draft RCAs &mdash; reducing manual intervention by 60%+.</p>
+      <div class="af">
+        <div class="afl">Agent Workflow Pipeline</div>
+        <div class="afs">
+          <span class="as">Git Push</span><span class="aa">&#x2192;</span><span class="as">Terraform Plan</span><span class="aa">&#x2192;</span>
+          <span class="as">Claude IaC Agent</span><span class="aa">&#x2192;</span><span class="as">IAM Review</span><span class="aa">&#x2192;</span>
+          <span class="as">Auto-Approve/Flag</span><span class="aa">&#x2192;</span><span class="as">Deploy EKS</span>
+        </div>
+      </div>
+      <ul class="pwins">
+        <li><span class="wd" style="background:var(--violet)"></span>LLM Terraform reviewer flags open S3 buckets &amp; overpermissive IAM before apply via GitHub PR webhooks.</li>
+        <li><span class="wd" style="background:var(--violet)"></span>Claude triage agent reads CloudWatch + Datadog logs, auto-generates runbook steps in Slack threads.</li>
+        <li><span class="wd" style="background:var(--violet)"></span>Agent-generated RCAs reduced post-incident documentation overhead by ~70% for the SRE team.</li>
+      </ul>
+      <div class="ts">
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11" fill="#d97706"><circle cx="12" cy="12" r="9"/></svg>Claude API</span>
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11" fill="#10a37f"><circle cx="12" cy="12" r="9"/></svg>GPT-4o</span>
+        <span class="st">Python</span><span class="st">LangChain</span>
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11"><path fill="#7b42bc" d="M2 0L9.22 4.22v8.44L2 8.44z"/></svg>Terraform</span>
+        <span class="st">GitHub Actions</span><span class="st">AWS Lambda</span><span class="st">PagerDuty</span>
+      </div>
+    </div>
+
+    <div class="pc2 card ptf">
+      <div class="pt2">
+        <div class="pi2"><div class="pico2" style="background:rgba(26,111,255,.15)">&#x1F3D7;&#xFE0F;</div><div><div class="pname">Multi-Cloud IaC Platform with Terraform Module Registry</div><div class="pmeta">Gartner &middot; Virginia, USA &middot; 2024&ndash;2025</div></div></div>
+        <span class="pbadge btf">Terraform &middot; IaC</span>
+      </div>
+      <p class="pdesc">Modular Terraform platform enabling 15+ app teams to self-service cloud infra across AWS and Azure. GitOps promotion: dev &#x2192; QA &#x2192; prod with OPA compliance at each gate. Onboarded 8 apps in under 3 months.</p>
+      <ul class="pwins">
+        <li><span class="wd" style="background:var(--blue)"></span>Private module library covering VPCs, EKS, AKS, RDS, Azure App Services via versioned references.</li>
+        <li><span class="wd" style="background:var(--blue)"></span>OPA-enforced tagging, region restrictions, cost controls at plan time &mdash; zero policy violations in prod.</li>
+        <li><span class="wd" style="background:var(--blue)"></span>Environment provisioning reduced from 2 days to under 25 minutes.</li>
+      </ul>
+      <div class="ts">
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11"><path fill="#7b42bc" d="M2 0L9.22 4.22v8.44L2 8.44z"/></svg>Terraform</span>
+        <span class="st">AWS</span><span class="st">Azure</span><span class="st">GitHub Actions</span><span class="st">OPA</span>
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11" fill="#326CE5"><circle cx="12" cy="12" r="3"/></svg>EKS / AKS</span>
+      </div>
+    </div>
+
+    <div class="pc2 card pci">
+      <div class="pt2">
+        <div class="pi2"><div class="pico2" style="background:rgba(0,184,212,.12)">&#x1F504;</div><div><div class="pname">Enterprise GitOps CI/CD with ArgoCD &amp; Argo Rollouts</div><div class="pmeta">UnitedHealth Insurance &middot; 2024&ndash;2025</div></div></div>
+        <span class="pbadge bci">CI/CD &middot; GitOps</span>
+      </div>
+      <p class="pdesc">Declarative GitOps for 30+ microservices on EKS and AKS. ArgoCD syncs Kubernetes manifests from Git with drift detection, instant rollback, and HIPAA-compliant audit trails. Rollback: 20 min &#x2192; 90 sec.</p>
+      <ul class="pwins">
+        <li><span class="wd" style="background:var(--cyan)"></span>30+ services on ArgoCD &mdash; full declarative state management and automatic drift correction.</li>
+        <li><span class="wd" style="background:var(--cyan)"></span>YAML pipelines: SonarQube scan &#x2192; Trivy image scan &#x2192; ArgoCD sync with enforced quality gates.</li>
+        <li><span class="wd" style="background:var(--cyan)"></span>Zero-downtime blue-green and canary via Argo Rollouts with automated traffic shifting.</li>
+      </ul>
+      <div class="ts">
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11" fill="#EF7B4D"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>ArgoCD</span>
+        <span class="st">Kubernetes</span><span class="st">Helm</span><span class="st">Azure DevOps</span><span class="st">SonarQube</span><span class="st">Trivy</span>
+      </div>
+    </div>
+
+    <div class="pc2 card psc">
+      <div class="pt2">
+        <div class="pi2"><div class="pico2" style="background:rgba(0,200,150,.12)">&#x1F512;</div><div><div class="pname">Cloud Security Hardening &amp; Compliance Framework</div><div class="pmeta">UnitedHealth / HSBC &middot; 2021&ndash;2025</div></div></div>
+        <span class="pbadge bsc">Security &middot; Compliance</span>
+      </div>
+      <p class="pdesc">End-to-end cloud security across AWS and Azure in healthcare and banking. Layered controls: IAM, network segmentation, secrets management, automated compliance &mdash; meeting HIPAA and banking standards.</p>
+      <ul class="pwins">
+        <li><span class="wd" style="background:var(--green)"></span>HashiCorp Vault eliminated hardcoded credentials across 50+ services and Kubernetes pods.</li>
+        <li><span class="wd" style="background:var(--green)"></span>AWS Access Analyzer reduced overpermissive IAM roles by 80% via automated policy review.</li>
+        <li><span class="wd" style="background:var(--green)"></span>Automated DR &mdash; EBS snapshot + cross-region restore proving RTO compliance quarterly.</li>
+      </ul>
+      <div class="ts">
+        <span class="st">HashiCorp Vault</span><span class="st">AWS IAM</span><span class="st">Azure RBAC</span><span class="st">AWS Config</span><span class="st">CloudTrail</span>
+      </div>
+    </div>
+
+    <div class="pc2 card pob">
+      <div class="pt2">
+        <div class="pi2"><div class="pico2" style="background:rgba(255,107,43,.07)">&#x1F4CA;</div><div><div class="pname">Full-Stack Observability &amp; Intelligent Alerting</div><div class="pmeta">Gartner / Value Labs &middot; 2022&ndash;2025</div></div></div>
+        <span class="pbadge bob">Monitoring &middot; SRE</span>
+      </div>
+      <p class="pdesc">Unified observability: Prometheus, Grafana, ELK, Datadog, Azure Monitor &mdash; real-time dashboards, SLO tracking, intelligent alert routing. Alert noise down 65%. RCA time: 40 min &#x2192; 5 min.</p>
+      <ul class="pwins">
+        <li><span class="wd" style="background:var(--orange)"></span>Prometheus + Grafana on Kubernetes tracking API latency, pod health, transaction SLOs.</li>
+        <li><span class="wd" style="background:var(--orange)"></span>ELK centralized logs from 40+ services; root cause identification cut from 40 min to under 5.</li>
+        <li><span class="wd" style="background:var(--orange)"></span>Datadog anomaly detection cut false-positive pages by 65% during peak traffic.</li>
+      </ul>
+      <div class="ts">
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11" fill="#E6522C"><circle cx="12" cy="12" r="8"/></svg>Prometheus</span>
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11" fill="#F46800"><path d="M3 3h7v7H3zm11 0h7v7h-7z"/></svg>Grafana</span>
+        <span class="st">ELK Stack</span>
+        <span class="st"><svg viewBox="0 0 24 24" width="11" height="11" fill="#632CA6"><circle cx="12" cy="12" r="8"/></svg>Datadog</span>
+        <span class="st">Azure Monitor</span><span class="st">PagerDuty</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+<div class="wrap">
+  <div class="slbl">EXPERIENCE</div>
+  <h2 class="stitle">Career <span>Timeline</span></h2>
+  <div class="sline"></div>
+  <div class="tl">
+
+    <div class="ti"><div class="td"></div><div class="tb">
+      <div class="th"><span class="tr2">Sr. DevOps Engineer / SRE</span><span class="tp">Jul 2025 &ndash; Present</span></div>
+      <div class="tco" style="color:var(--blue)">UnitedHealth Insurance &middot; Scottsdale, AZ</div>
+      <ul class="tls">
+        <li>Integrated Claude &amp; GitHub Copilot to validate Terraform modules, review IAM policies, and auto-triage CI/CD failures.</li>
+        <li>Designed ArgoCD GitOps with declarative Kubernetes manifests and sub-2-minute rollback capability.</li>
+        <li>Managed EKS and AKS clusters with Helm; handled rolling updates and production incidents on-call.</li>
+      </ul>
+      <div class="tch"><span>AWS</span><span>Azure</span><span>Terraform</span><span>EKS/AKS</span><span>ArgoCD</span><span>AI Tools</span></div>
+    </div></div>
+
+    <div class="ti"><div class="td"></div><div class="tb">
+      <div class="th"><span class="tr2">Cloud / DevOps Engineer</span><span class="tp">Jun 2024 &ndash; May 2025</span></div>
+      <div class="tco" style="color:var(--cyan)">Gartner &middot; Virginia, USA</div>
+      <ul class="tls">
+        <li>Built modular Terraform codebase for 15+ app teams across AWS and Azure with OPA compliance gates.</li>
+        <li>Standardized CI/CD templates via GitHub Actions; containerized apps and deployed to Kubernetes.</li>
+      </ul>
+      <div class="tch"><span>Terraform</span><span>GitHub Actions</span><span>Kubernetes</span><span>Datadog</span><span>Vault</span></div>
+    </div></div>
+
+    <div class="ti"><div class="td"></div><div class="tb">
+      <div class="th"><span class="tr2">DevOps Engineer</span><span class="tp">May 2021 &ndash; Nov 2023</span></div>
+      <div class="tco" style="color:var(--green)">Value Labs &middot; Hyderabad, India</div>
+      <ul class="tls">
+        <li>Jenkins + GitLab CI/CD for Java finance services with SonarQube &amp; Trivy quality gates.</li>
+        <li>Introduced ArgoCD for Kubernetes &mdash; version-controlled manifests and simplified production rollbacks.</li>
+      </ul>
+      <div class="tch"><span>Jenkins</span><span>GitLab CI</span><span>ArgoCD</span><span>Kafka</span><span>PostgreSQL</span></div>
+    </div></div>
+
+    <div class="ti"><div class="td"></div><div class="tb">
+      <div class="th"><span class="tr2">Cloud &amp; DevOps Engineer</span><span class="tp">Jul 2017 &ndash; Mar 2021</span></div>
+      <div class="tco" style="color:var(--ink3)">HSBC &middot; Hyderabad, India</div>
+      <ul class="tls">
+        <li>Migrated banking apps from on-prem to AWS and Azure with minimal downtime and security compliance.</li>
+        <li>Automated cross-region DR with snapshot policies reducing RTO in quarterly drills.</li>
+      </ul>
+      <div class="tch"><span>AWS</span><span>Azure</span><span>Terraform</span><span>Ansible</span><span>ELK</span></div>
+    </div></div>
+
+    <div class="ti"><div class="td"></div><div class="tb">
+      <div class="th"><span class="tr2">Build &amp; Release Engineer</span><span class="tp">Nov 2015 &ndash; Jun 2017</span></div>
+      <div class="tco" style="color:var(--ink4)">Airtel &middot; Noida, India</div>
+      <ul class="tls"><li>Automated telecom app builds with Jenkins and Git, eliminating manual release steps during maintenance windows.</li></ul>
+      <div class="tch"><span>Jenkins</span><span>Linux</span><span>Ansible</span><span>Nagios</span><span>Bash</span></div>
+    </div></div>
+
+  </div>
+  <div class="er">
+    <div class="ec card"><div class="edd">MSc Business Analytics</div><div class="edu">Lewis University</div></div>
+    <div class="ec card"><div class="edd">Bachelor of Engineering</div><div class="edu">Andhra University</div></div>
+    <div class="ec" style="background:linear-gradient(135deg,rgba(26,111,255,.14),rgba(0,184,212,.12));border:1.5px solid rgba(26,111,255,.32);border-radius:13px;padding:1.1rem">
+      <div class="edd">AWS Certified Solutions Architect</div>
+      <div class="edu" style="color:var(--blue)">Amazon Web Services</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="wrap">
+  <div class="slbl">CONTACT</div>
+  <h2 class="stitle">Let&rsquo;s Build Something <span>Together</span></h2>
+  <div class="sline"></div>
+  <div class="cw">
+    <div class="ccs">
+      <div class="ccard card"><div class="cico" style="background:rgba(26,111,255,.15)">&#x1F4E7;</div><div><div class="clbl">Email</div><div class="cval">stummala5454@gmail.com</div></div></div>
+
+      <div class="ccard card"><div class="cico" style="background:rgba(0,200,150,.12)">&#x1F4CD;</div><div><div class="clbl">Location</div><div class="cval">United States</div></div></div>
+      <div class="ccard card" style="border-color:rgba(26,111,255,.25)"><div class="cico" style="background:rgba(26,111,255,.15)">&#x1F3C5;</div><div><div class="clbl">Certification</div><div class="cval" style="color:var(--blue2)">AWS Certified Solutions Architect</div></div></div>
+    </div>
+    <div class="ctab card">
+      <div class="av"><span class="avd"></span>Open to Opportunities</div>
+      <h3>8+ Years. 3 Clouds.<br>Countless Pipelines.</h3>
+      <p>Looking for Senior DevOps, SRE, or Cloud Platform Engineering roles where AI-augmented infrastructure meets reliability engineering. I thrive in cross-functional teams and love making infrastructure boring &mdash; in the best way possible.</p>
+      <p style="font-size:.82rem;color:var(--ink4)">Modernizing cloud infra, adopting GitOps, or exploring AI in DevOps? Let&rsquo;s talk.</p>
+      <br>
+      <a href="mailto:stummala5454@gmail.com" class="btn1" style="display:inline-flex">Send a Message &#x2192;</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <span class="ft">&#xa9; 2025 <b>Sai Tummala</b> &middot; DevOps &amp; Cloud Engineer</span>
+  <div class="status-bar">
+    <div class="sb-item"><span class="sb-dot"></span>Systems Nominal</div>
+    <div class="sb-item"><span class="sb-dot" style="background:var(--cyan)"></span>Pipeline Passing</div>
+    <div class="sb-item"><span class="sb-dot" style="background:var(--blue)"></span>Infra Healthy</div>
+  </div>
+</footer>
+</body>
+</html>
